@@ -20,7 +20,7 @@
 
 		const
 			API_AUTH_KEYWORD = 'SFAPI',
-			SFAPI_URL = 'https://moja.superfaktura.sk';
+			SFAPI_URL = 'https://moje.superfaktura.cz';
 		public function __construct($email, $apikey, $apptitle = '', $module = 'API'){
 			Requests::register_autoloader();
 			$this->className = get_class($this);
