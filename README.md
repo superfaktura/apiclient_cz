@@ -190,7 +190,7 @@ Uloží nastavené dáta a aktualizuje faktúru.
 * **1** Id dokladu má nesprávny formát
 * **2** Neexistujúce id dokladu
 * **3** Chyba pri editácii faktúry. Volanie treba opakovať.
-* **6** Chyba pri validácii úrajov. Povinné údaje chýbajú alebo nemajú správny formát.
+* **6** Chyba pri validácii údajov. Povinné údaje chýbajú alebo nemajú správny formát.
 
 ### 10. expenses
 Vráti zoznam nákladov.
@@ -697,7 +697,7 @@ Uloží nastavené dáta a vystaví faktúru.
 ### 22. setExpense
 Nastaví hodnoty pre náklad.
 ##### Paramete
-* **$key** mixed povinné. Môže byť string, alebo pole. Ak je string, nastaví sa konkrétna hodnota v $data['Expense'][$key]. Ak je pole, nastaví sa viacero hodmôt naraz.
+* **$key** mixed povinné. Môže byť string, alebo pole. Ak je string, nastaví sa konkrétna hodnota v $data['Expense'][$key]. Ak je pole, nastaví sa viacero hodnôt naraz.
 * **$value** mixed nepovinné. Ak je $key string, hodnota $value sa nastaví v $data['Expense'][$key]. Ak je $key pole, $value sa ignoruje.
 
 Príklad použitia:
@@ -733,7 +733,7 @@ Zoznam možných vlastností nákladu:
 ### 23. setInvoice
 Nastaví hodnoty pre faktúru
 ##### Parametre
-* *$key* mixed povinné. Môže byť string, alebo pole. Ak je string, nastaví sa konkrétna hodnota v $data['Invoice'][$key]. Ak je pole, nastaví sa viacero hodmôt naraz.
+* *$key* mixed povinné. Môže byť string, alebo pole. Ak je string, nastaví sa konkrétna hodnota v $data['Invoice'][$key]. Ak je pole, nastaví sa viacero hodnôt naraz.
 * *$value* mixed nepovinné. Ak je $key string, hodnota $value sa nastaví v $data['Invoice'][$key]. Ak je $key pole, $value sa ignoruje.
 
 Príklad použitia:
@@ -934,6 +934,7 @@ Zoznam možných vlastností klienta:
 * **phone** - telefón
 * **zip** - PSČ
 * **match_address** (boolean) - pokiaľ je tento parameter nastavený, do hľadania klienta vstupuje aj adresa.
+* **update_addressbook** (boolean) - pri vystavení faktúry aktualizuje údaje klienta !!!
 
 ### 30. stockItems
 Vráti zoznam skladových položiek.
