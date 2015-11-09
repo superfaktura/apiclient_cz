@@ -23,7 +23,7 @@
 
 ## Ukážky kódu
   Aby sme vám uľahčili prácu pri implementácii nášho API, vytvorili sme ukážky kódu 
-  ([sample.php](https://github.com/superfaktura/apiclient/blob/master/sample.php) a [sample2.php](https://github.com/superfaktura/apiclient/blob/master/sample2.php)),
+  ([sample.php](https://github.com/superfaktura/apiclient/blob/master/examples/sample.php) a [sample2.php](https://github.com/superfaktura/apiclient/blob/master/examples/sample2.php)),
   ktoré demonštrujú jeho funkcionalitu a dpĺňajú našu dokumentáciu o fungujúce príklady.
 
 ## Začíname používať SuperFaktúra PHP-API
@@ -742,12 +742,21 @@ $api->setInvoice('name', 'nazov faktury');
   ```
   ```php   
 $api->setInvoice(array(
-		'name' => 'nazov faktury',
-		'variable' => '123456',
-		'constant' => '0308'
+	'name' => 'nazov faktury',
+	'variable' => '123456',
+	'constant' => '0308',
+	'bank_accounts' => array(
+		array(
+			'bank_name' => 'MyBank',
+			'account' => '012345678',
+			'bank_code' => '1234',
+			'iban' => 'SK0000000000000000',
+			'swift' => '12345',
+		)
+	)
 ));
   ``` 
-  
+
 Zoznam možných vlastností faktúry:
 * **already_paid** - bola už faktúra uhradená? true/false
 * **created** - dátum vystavenia
@@ -774,6 +783,7 @@ Zoznam možných vlastností faktúry:
 * **sequence_id** - ID číselníka, zoznam číselníkov je možné získať metódou getSequences
 * **type** - typ faktúry. Možnosti: regular - bežná faktúra, proforma - zálohová faktúra, cancel - dobropis, estimate - cenová ponuka, order - prijatá objednávka
 * **variable** - variabilný symbol
+* **bank_accounts** - (pole) zoznam bankových účtov (pozri príklad vyššie)
 
 ### 24. sendInvoiceEmail
 Odošle faktúru emailom.
@@ -952,98 +962,14 @@ Vráti zoznam skladových položiek.
         "StockItem": {...},
     },...]
 }
-``` 
+```
  
-### 31. addStockMovement 
-Pridá pohyb na sklade.
-##### Parametre
-* **$item** *array*, povinné.
-
-Príklad použitia:
- ```php
-$api->addStockMovement(array(
-	'stock_item_id' => 0, // id skladovej polozky
-	'name' => 'Stock item example', // nazov skladovej polozky
-	'description' => 'Stock item description', // popis
-	'sku' => 'SKU12345REF', // skladove cislo
-	'unit_price' => 10, // jednotkova cena bez DPH
-	'vat' => 20, // DPH v percentach
-	'stock' => 100 // pocet kusov na sklade, ak nie je definovane nebudu sa sledovat pohyby
-));
-``` 
-Zoznam možných nastavení:
-* **stock_item_id** *iteger*, id skladovej položky, ku ktorej chceme pridať pohyb
-* **quantity** *integer*, pohyb - záporné číslo je výdaj, kladné príjem
-* **note** *string*, popis pohybu
-* **created** *date* 'YEAR-MONTH-DAY' formát, dátum
-
-### 32. setClient
-Nastaví hodnoty pre klienta.
-##### Parametre
-Zhodné so setInvoice
-
-Zoznam možných vlastností klienta:
-* **update_addressbook** - !!! pri vystavení faktúry upraviť aj údaje klienta v kontaktoch
-* **address** - adresa
-* **bank_account** - bankový účet
-* **city** - mesto
-* **comment** - komentár
-* **country_id** - ID krajiny, číselník krajín je možné získať metódou getCountries
-* **country_iso_id** ISO 3166-1 (Alpha-2) kod krajiny
-* **country** - vlastný názov krajiny
-* **delivery_address** - dodacia adresa
-* **delivery_city** - dodacie mesto
-* **delivery_country** - vlastná dodacia krajina
-* **delivery_country_id** - ID dodacej krajiny
-* **delivery_country_iso_id** ISO 3166-1 (Alpha-2) kod krajiny
-* **delivery_name** - názov klienta pre dodanie
-* **delivery_zip** - dodacie PSČ
-* **dic** - DIČ
-* **email** - email
-* **fax** - fax
-* **ic_dph** - IČ DPH
-* **ico** - IČO
-* **name** - názov klienta
-* **phone** - telefón
-* **zip** - PSČ
-* **match_address** (boolean) - pokiaľ je tento parameter nastavený, do hľadania klienta vstupuje aj adresa.
-
-### 33. stockItems
-Vráti zoznam skladových položiek.
-##### Parametre
-* **$params** pole povinné. Parametre pre filtrovanie a stránkovanie.
-* **$list_info** bool nepovinné. Určuje, či vrátené dáta budú obsahovať aj údaje o zozname (celkový počet položiek, počet strán...)
-
-##### Možné parametre pre filtrovanie
- ```php
- array(
-	'page'          => 1, //Strana
-	'per_page'      => 10, //Počet položiek na stranu
-	'price_from'    => 0, //Cena od
-	'price_to'      => 0, //Cena do
-	'search'        => '', //Hľadaný výraz. Prehľadáva všetky polia.
-)
- ```
-##### Formát vrátených dát
-##### Možné parametre pre filtrovanie
- ```php
-{
-    "itemCount": 67,
-    "pageCount": 7,
-    "perPage": 10,
-    "page": 1,
-    "items": [{
-        "StockItem": {...},
-    },...]
-}
- ```
- 
-### 34. stockItem
+### 31. stockItem
 Vráti detaily skladovej položky.
 ##### Parametre
 * **$stock_item_id** int povinné. Získané z StockItem->id.
 
-### 35. addContactPerson($data)
+### 32. addContactPerson($data)
 Pridá novú kontaktnú osobu k existujúcemu klientovi. Návratová hodnota je objekt (JSON). Pokiaľ operácia prebehla bez problémov je nastavený atribút status na hodnotu (string) 'SUCCESS'.
 ```php
 $result = $api->addContactPerson(array(
