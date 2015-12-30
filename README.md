@@ -6,11 +6,11 @@ Abyste se nemuseli trápit s přímým voláním API funkcí a způsobem přenos
 
 ## Postup jak získat PHP-API klienta
 
-### 1. způsob(vyžaduje nainstalovaný systém Git)
+### 1. způsob (vyžaduje nainstalovaný systém Git)
 1. vytvořte si adresář, který má obsahovat SuperFaktura PHP-API např. (*$> Mkdir / var / www / myproject / libs*)
 2. přepněte se do nově vytvořeného adresáře a spusťte přes konzoli příkaz *$> git clone https://github.com/superfaktura/apiclient.git*
 
-### 2. způsob(nevyžaduje nainstalovaný systém Git)
+### 2. způsob (nevyžaduje nainstalovaný systém Git)
 1. Stáhněte si SuperFaktúra PHP-API kliknutím na tlačítko "Stáhnout ZIP", které se nachází na github stránce našeho API.
 
 ## Ukázky kódu
@@ -524,76 +524,6 @@ Uloží nastavené data a vystaví fakturu
                     "swift": "UNCRSKBX",
                     "created": "2014-10-06 13:25:30",
                     "modified": "2015-08-21 08:09:07"
-                },
-                {
-                    "id": "10121",
-                    "user_id": "15968",
-                    "user_profile_id": "10156",
-                    "default": null,
-                    "country_id": "191",
-                    "bank_name": "",
-                    "bank_code": "",
-                    "account": "",
-                    "iban": "",
-                    "swift": "",
-                    "created": "2014-10-17 09:05:54",
-                    "modified": "2014-10-17 09:05:54"
-                },
-                {
-                    "id": "10434",
-                    "user_id": "15968",
-                    "user_profile_id": "10156",
-                    "default": null,
-                    "country_id": "191",
-                    "bank_name": "",
-                    "bank_code": "",
-                    "account": "",
-                    "iban": "",
-                    "swift": "",
-                    "created": "2014-11-18 14:29:46",
-                    "modified": "2014-11-18 14:29:46"
-                },
-                {
-                    "id": "10502",
-                    "user_id": "15968",
-                    "user_profile_id": "10156",
-                    "default": null,
-                    "country_id": "191",
-                    "bank_name": "",
-                    "bank_code": "",
-                    "account": "",
-                    "iban": "",
-                    "swift": "",
-                    "created": "2014-11-25 09:33:31",
-                    "modified": "2014-11-25 09:33:31"
-                },
-                {
-                    "id": "10530",
-                    "user_id": "15968",
-                    "user_profile_id": "10156",
-                    "default": null,
-                    "country_id": "191",
-                    "bank_name": "",
-                    "bank_code": "",
-                    "account": "",
-                    "iban": "",
-                    "swift": "",
-                    "created": "2014-11-27 09:20:29",
-                    "modified": "2014-11-27 09:20:29"
-                },
-                {
-                    "id": "10774",
-                    "user_id": "15968",
-                    "user_profile_id": "10156",
-                    "default": null,
-                    "country_id": "191",
-                    "bank_name": "",
-                    "bank_code": "",
-                    "account": "",
-                    "iban": "",
-                    "swift": "",
-                    "created": "2014-12-15 14:29:54",
-                    "modified": "2014-12-15 14:29:54"
                 }
             ]
         },
@@ -1039,14 +969,14 @@ $data = array(
 					'tax' => 15 
 				) 
 	) ); 
-Samotný request s použitím např. Requests knihovna potom může vypadat následovně:
+// Samotný request s použitím např. Requests knihovna potom může vypadat následovně:
 Requests::register_autoloader(); 
 $response = Requests::post('https://moje.superfaktura.cz/invoices/create', 
 		$headers, 
 		array('data' => json_encode($data)) 
 ); 
 $response_data = json_decode($response->body, true); 
-výsledkem tohto volání je JSON odpověď v nasledující formě 
+// výsledkem tohto volání je JSON odpověď v nasledující formě 
 $response_data = array( 
 			'error' => 0, 
 			'error_message' => 'Chybová hláška', 
