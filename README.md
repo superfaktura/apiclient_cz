@@ -520,7 +520,7 @@ Uloží nastavené data a vystaví fakturu
                     "bank_name": "UniCredit Bank Slovakia",
                     "bank_code": "1111",
                     "account": "xxxxxxxx",
-                    "iban": "SKxxxxxxxxxxxxxxxxxxxxxxx,
+                    "iban": "SKxxxxxxxxxxxxxxxxxxxxxxx",
                     "swift": "UNCRSKBX",
                     "created": "2014-10-06 13:25:30",
                     "modified": "2015-08-21 08:09:07"
