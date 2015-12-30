@@ -1,54 +1,44 @@
-# SuperFaktúra PHP-API klient
+## Přehled
+SF API umožňuje propojení externích aplikací se SuperFakturou a dovoluje tak vzdáleně vytvářet faktury a získavat údaje o nich. Umožňuje také posílat faktury emailem nebo poštou.
 
-## Overview
- API SuperFaktúry umožňuje prepojenie externých aplikácií so SuperFaktúrou a 
- dovoľuje tak vzdialene vytvárať doklady a získavať údaje o nich. 
- Umožňuje tiež odosielať faktúry emailom alebo poštou.
- 
 ## Quickstart
- Aby ste sa nemusli trápiť s priamymi volaniami API funkcií a spôsobom prenosu dát, 
- pripravili sme pre Vás jednoduchého API klienta, vďaka ktorému môžete Vaše faktúry vystavovať nadiaľku s 
- minimálnym úsilím.
- 
-## Postup ako získať PHP-API klienta
+Abyste se nemuseli trápit s přímým voláním API funkcí a způsobem přenosu dat, připravili jsme pro Vás jednoduchého API klienta, díky kterému můžete Vaše faktury vystavovat nadálku s minimálním úsilím. 
 
-### 1. spôsob (vyžaduje nainštalovaný systém Git)
-  1. vytvorte si adresár, ktorý má obsahovať SuperFaktúra PHP-API napr. (*$> mkdir /var/www/myproject/libs*)
-  2. prepnite sa do novo vytvoreného adresára a spustite cez konzolu 
-  príkaz *$> git clone https://github.com/superfaktura/apiclient.git*
-  
-### 2. spôsob (nevyžaduje nainštalovaný systém Git)
-  1. Stiahnite si SuperFaktúra PHP-API kliknutím na tlačidlo "Stiahnuť ZIP", ktoré sa nachádza na 
-  github stránke nášho API.
+## Postup jak získat PHP-API klienta
 
-## Ukážky kódu
-  Aby sme vám uľahčili prácu pri implementácii nášho API, vytvorili sme ukážky kódu 
-  ([sample.php](https://github.com/superfaktura/apiclient/blob/master/examples/sample.php) a [sample2.php](https://github.com/superfaktura/apiclient/blob/master/examples/sample2.php)),
-  ktoré demonštrujú jeho funkcionalitu a dpĺňajú našu dokumentáciu o fungujúce príklady.
+### 1. způsob(vyžaduje nainstalovaný systém Git)
+1. vytvořte si adresář, který má obsahovat SuperFaktura PHP-API např. (*$> Mkdir / var / www / myproject / libs*)
+2. přepněte se do nově vytvořeného adresáře a spusťte přes konzoli příkaz *$> git clone https://github.com/superfaktura/apiclient.git*
 
-## Začíname používať SuperFaktúra PHP-API
-  Na to, aby ste mohli začať API na plno využívať, je potrebné:
-### 1. Zaregistrovať sa v SuperFaktúre
-  * Na stránke https://moja.superfaktura.sk/registracia vykonajte registráciu. Automaticky získate 30 dní zadarmo.
-  * Po prihlásení vystavte skúšobnú faktúru cez GUI SuperFaktúry
-  
-### 2. Urobiť základné nastavenia v kóde
-  * Vytvoriť novú inštanciu triedy *SFAPIclient*
-  * Poskytnúť v konštruktore prihlasovacie údaje do API
-    + **Email** - prihlasovací email do SuperFaktúry
-    + **Token** - API token, ktorý nájdete v SuperFaktúre po prihlásení do svojho účtu "*Nástroje > API prístup*"
-  ```php
+### 2. způsob(nevyžaduje nainstalovaný systém Git)
+1. Stáhněte si SuperFaktúra PHP-API kliknutím na tlačítko "Stáhnout ZIP", které se nachází na github stránce našeho API.
+
+## Ukázky kódu
+
+Abychom vám usnadnili práci při implementaci našeho API, vytvořili jsme ukázky kódu ([sample.php](https://github.com/superfaktura/apiclient/blob/master/examples/sample.php) a [sample2.php](https://github.com/superfaktura/apiclient/blob/master/examples/sample2.php)), které demonstrují jeho funkcionalitu a dpĺňajú naši dokumentaci o fungující příklady.
+
+## Začínáme používat SuperFaktura PHP-API
+Na to, abyste mohli začít API na plno využívat, je třeba:
+
+### 1. Zaregistrovat se v SuperFakture
+* Na stránce https://moje.superfaktura.cz/registracia proveďte registraci. Automaticky získáte 30 dní zdarma.
+* Po přihlášení vystavte zkušební fakturu přes GUI SuperFaktury
+
+### 2. Udělat základní nastavení v kódu
+* Vytvořit novou instance třídy *SFAPIclientCZ*
+* Poskytnout v konstruktoru přihlašovací údaje do API
++ **Email** - přihlašovací email do SuperFaktúry
++ **Token** - API token, který najdete v SuperFaktúre po přihlášení do svého účtu "*Nástroje> API přístup*"
+```php
 require_once('SFAPIclient/SFAPIclient.php');  // inc. SuperFaktúra PHP-API
 $login_email = 'login@example.com';  // moja.superfaktura.sk login email
 $api_token = 'abcd1234';  // token from my account
 $sf_api = new SFAPIclient($login_email, $api_token);  // create SF PHP-API object
-  ```
-  
-### 3. Používanie PHP-API volaní
-  Nižšie je uvedený zoznam všetkých možných volaní, ktoré obsahuje najnovšia verzia nášho API.
-  *Všetky PHP funkcie nášho API sú verejné členské funkcie triedy SFAPIclient*.
-  Príklad vystavenia jednoduchej faktúry (pokračovanie predch. príkladu)
-  ```php
+```
+### 3. Používání PHP-API volání
+Níže je uveden seznam všech možných volání, které obsahuje nejnovější verze našeho API. *Všechny PHP funkce našeho API jsou veřejné členské funkce třídy SFAPIclient*. 
+Příklad vystavení jednoduché faktury (pokračování předch. příkladu)
+```php
 // set client for new invoice
 $sf_api->setClient(array(
 'name' => 'MyClient',
@@ -70,285 +60,305 @@ $sf_api->addItem(array(
 // save invoice in SuperFaktura
 $json_response = $sf_api->save();
 // TODO: handle exceptions
-  ```
-## Zoznam volaní (verejných členských funkcií vrátane konštruktora triedy SFAPIclient)
-  * *__construct($email, $apikey)*
-  * *addItem($item = array())*
-  * *addStockItem($item = array())*
-  * *addStockMovement($item = array())*
-  * *addTags($tag_ids = array())*
-  * *clients($params = array(), $list_info = true)*
-  * *delete($id)*
-  * *deleteInvoiceItem($invoice_id, $id)*
-  * *deleteExpense($id)*
-  * *deleteStockItem($id)*
-  * *edit()*
-  * *expense()*
-  * *expenses()*
-  * *getCountries()*
-  * *getSequences()*
-  * *getPDF($invoice_id, $token, $language = 'slo')*
-  * *getTags()*
-  * *invoice($id)*
-  * *invoices($params = array(), $list_info = true)*
-  * *markAsSent($invoice_id, $email, $subject = '', $message = '')*
-  * *payInvoice($invoice_id, $amount, $currency = 'EUR', $date = null, $payment_type = 'transfer')*
-  * *payExpense($expense_id, $amount, $currency = 'EUR', $date = null, $payment_type = 'transfer')*
-  * *save()*
-  * *setClient($key, $value = '')*
-  * *setExpense($key, $value = '')*
-  * *setInvoice($key, $value = '')*
-  * *sendInvoiceEmail($options = array())*
-  * *sendInvoicePost($options = array())*
-  * *stockItemEdit($item = array())*
-  * *stockItems($params = array(), $list_info = true)*
-  * *stockItem($id)*
-  * *addContactPerson($data)*
- 
+```
+
+## Seznam volání (veřejných členských funkcí včetně konstruktoru třídy SFAPIclientCZ)
+* *__construct($email, $apikey)* 
+* *addItem($item = array())* 
+* *addStockItem($item = array())* 
+* *addStockMovement($item = array())* 
+* *addTags($tag_ids = array())* 
+* *clients($params = array(), $list_info = true)* 
+* *delete($id)* 
+* *deleteInvoiceItem($invoice_id, $id)* 
+* *deleteExpense($id)* 
+* *deleteStockItem($id)* 
+* *edit()* 
+* *expense()* 
+* *expenses()* 
+* *getCountries()* 
+* *getSequences()* 
+* *getPDF($invoice_id, $token, $language = 'slo')* 
+* *getTags()* 
+* *invoice($id)* 
+* *invoices($params = array(), $list_info = true)* 
+* *markAsSent($invoice_id, $email, $subject = '', $message = '')* 
+* *payInvoice($invoice_id, $amount, $currency = 'EUR', $date = null, $payment_type = 'transfer')* 
+* *payExpense($expense_id, $amount, $currency = 'EUR', $date = null, $payment_type = 'transfer')* 
+* *save()* 
+* *setClient($key, $value = '')* 
+* *setExpense($key, $value = '')* 
+* *setInvoice($key, $value = '')* 
+* *sendInvoiceEmail($options = array())* 
+* *sendInvoicePost($options = array())* 
+* *stockItemEdit($item = array())* 
+* *stockItems($params = array(), $list_info = true)* 
+* *stockItem($id)* 
+* *addContactPerson($data)* 
+
 ### 1. __construct
- Konštruktor. Nastaví email a API token pre autorizáciu.
-##### Parametre
-  * **$email** string povinný
-  * **$token** string povinný
+Konstruktor. Nastaví email a API token pro autorizaci.
+####Parametry:
+* **$email** *string* povinný 
+* **$token** *string* povinný 
 
 ### 2. addItem
- Pridá položku na faktúru.
-##### Parametre
- * **$item** pole povinné
+Přidá položku na fakturu.
+####Parametry:
+* **$item** *pole* povinné
 
-##### Formát fakturačnej položky
- ```php
-array(
-	'name'          	   => 'Názov položky',
-	'description'   	   => 'Popis',
-	'quantity'       	   => 1, //množstvo
-	'unit'         	 	   => 'ks', //jednotka
-	'unit_price'     	   => 40.83, //cena bez dph, resp. celková cena, ak nie ste platcami DPH
-	'tax'           	   => 20, //sadzba DPH, ak nie ste platcom DPH, zadajte 0
-	'stock_item_id'  	   => 123, //id skladovej polozky
-	'sku'             	   => 'SKU123', //skladove oznacenie
-	'discount'        	   => 50, //Zľava na položku v %
-	'load_data_from_stock' => true //Načíta nevyplnené údaje položky zo skladu
+##### formát fakturované položky:
+```php
+array( 
+	'name' => 'Název položky', 
+	'description' => 'Popis', 
+	'quantity' => 1, //množství 
+	'unit' => 'ks', //jednotka 
+	'unit_price' => 40.83, //cena bez DPH, resp. celková cena, pokud nejste platci DPH 
+	'tax' => 20, //sazba DPH, pokud nejste plátcem DPH, zadajte 0 
+	'stock_item_id' => 123, //id skladové položky 
+	'sku' => 'SKU123', //skladové označení 
+	'discount' => 50, //Sleva na položku v % 
+	'load_data_from_stock' => true //Načíst nevyplněné údaje položky ze skladu 
 )
- ```
+```
+
 ### 3. addTags
- Pridá faktúre tagy podľa číselníka
-##### Parametre
-* **$tags_ids** pole povinné, pole ID požadovaných tagov
+Přidá faktuře tagy podle číselníku
+#### Parametry:
+* **$tags_ids** *pole* povinné, pole ID požadovaných tagů 
 
 ### 4. clients
- Vráti zoznam klientov
-##### Parametre
-* **$params** pole povinné. Parametre pre filtrovanie a stránkovanie.
-* **$list_info** bool nepovinné. Určuje, či vrátené dáta budú obsahovať aj údaje o zozname (celkový počet položiek, počet strán...)
+Vrátí seznam klientů
+#### Parametry:
+* **$params** *pole* povinné. Parametry pro filtrování a stránkování. 
+* **$list_info** *bool* nepovinné. Určí zda vrácené data budou obsahovat i údaje o seznamu (celkový počet položek, počet stránek...)
 
-##### Možné parametre pre filtrovanie, číselníky hodnôt sa nachádzajú pod zoznamom parametrov
- ```php
-array(
-	'search' => '', //Hľadaný výraz v klientovi. Prehľadáva všetky polia.
+##### možné parametry pro filtrování, číselníky hodnot se nachází pod seznamem parametrů: 
+```php
+array( 
+	'search' => '', //Hledaný výraz v klientovi. Prohledává všechy pole. 
 )
- ```
-##### Formát vrátených dát
-  ```php
-{
-    "itemCount": 67,
-    "pageCount": 7,
-    "perPage": 10,
-    "page": 1,
-    "items": [{
-        "Client": {...},
-    },...]
+```
+##### Formát vrácených dat
+```php
+{ 
+	"itemCount": 67, 
+	"pageCount": 7, 
+	"perPage": 10, 
+	"page": 1, 
+	"items": [{ "Client": {...}, },...] 
 }
- ```
+```
 
 ### 5. delete
-Zmaže faktúru.
-##### Parametre
-* **$id** povinné. Získané z Invoice->id.
-
+Smaže fakturu
+##### Parametry:
+* **$id** *int* povinné. Získané z Invoice->id.
+ 
 ### 6. deleteInvoiceItem
-Zmaže položku na faktúre.
-##### Parametre
-* **$invoice_id** int povinné. Získané z Invoice->id.
-* **$id** int povinné. Získané z InvoiceItem->id.
+Smaže položku na faktuře.
+##### Parametry:
+* **$invoice_id** *int* povinné. Získané z Invoice->id. 
+* **$id** *int* povinné. Získané z InvoiceItem->id. 
 
 ### 7. deleteExpense
-Zmaže náklad.
-##### Parametre
-* **$id** int povinné. Získané z Expense->id.
+Smaže náklad.
+##### Parametry:
+* **$id** *int* povinné. Získané z Expense->id.
 
 ### 8. deleteStockItem
-Zmaže skladovú položku.
-##### Parametre
-* **$id** int povinné. Získané z StockItem->id.
+Smaže skladovou položku.
+##### Parametry:
+* **$id** *int* povinné. Získané z StockItem->id.
 
 ### 9. edit
-Uloží nastavené dáta a aktualizuje faktúru.
-##### Parametre: žiadne
+Uloží nastavené data a aktualizuje fakturu
+##### Parametry: žádné
 ##### Návratová hodnota: objekt
-##### Kódy chýb
-* **1** Id dokladu má nesprávny formát
-* **2** Neexistujúce id dokladu
-* **3** Chyba pri editácii faktúry. Volanie treba opakovať.
-* **6** Chyba pri validácii údajov. Povinné údaje chýbajú alebo nemajú správny formát.
+##### Kódy chyb:
+* **1** Id dokladu nemá správný formát 
+* **2** Neexistující id dokladu 
+* **3** Chyba při editaci faktury. Volání třeba opakovat. 
+* **6** Chyba při validaci údajů. Povinné údaje chýbějí nebo nemají správný formát.
 
 ### 10. expenses
-Vráti zoznam nákladov.
-##### Parametre
-* **$params** pole povinné. Parametre pre filtrovanie a stránkovanie.
-* **$list_info** bool nepovinné. Určuje, či vrátené dáta budú obsahovať aj údaje o zozname (celkový počet položiek, počet strán...)
+Vrátí seznam nákladů
+##### Parametry:
+* **$params** *pole* povinné. Parametry pro filtrování a stránkování. 
+* **$list_info** *bool* nepovinné. Určuje zda vrácené data budou obsahovat i údaje o seznamu (celkový počet položek, počet stránek...) 
 
 ### 11. expense
-Vráti detaily nákladu.
-##### Parametre
-* **$expense_id** int povinné. Získané z Expense->id.
+Vrátí detaily nákladu
+##### Parametry:
+* **$expense_id** *int* povinné. Získané z Expense->id.
 
 ### 12. getCountries
-Vráti číselník krajín.
+Vrátí číselník zemí.
 
 ### 13. getSequences
-Vráti číselník číselných radov podľa typov dokumentov.
+Vrátí číselník číselných řad podle typů dokumentů.
 
 ### 14. getPDF
-Vráti PDF súbor s faktúrou.
-##### Parametre
-* **$invoice_id** int povinné. Získané z Invoice->id.
-* **$token** string povinné. Získané z Invoice->token.
-* **$language** string nepovinné. Jazyk požadovaného PDF. Možné hodnoty sú {slo, cze, eng}
+Vrátí PDF soubor s fakturou
+##### Parametry:
+* **$invoice_id** *int* povinné. Získané z Invoice->id. 
+* **$token** *string* povinné. Získané z Invoice->token. 
+* **$language** *string* nepovinné. Jazyk požadovaného PDF. Možné hodnoty jsou {slo, cze, eng, rus, ukr, hun} 
 
 ### 15. getTags
-Vráti číselník existujúcich tagov.
+Vrátí číselník existujících tagů
 
 ### 16. invoice
-Vráti detaily faktúry.
-##### Parametre
-* **$invoice_id** int povinné. Získané z Invoice->id.
+Vrátí detail faktury
+#####Parametry:
+* **$invoice_id** *int* povinné. Získané z Invoice->id. 
 
 ### 17. invoices
-Vráti zoznam vystavených faktúr.
-
-##### Parametre
-* **$params** pole povinné. Parametre pre filtrovanie a stránkovanie.
-* **$list_info** bool nepovinné. Určuje, či vrátené dáta budú obsahovať aj údaje o zozname (celkový počet položiek, počet strán...)
-
-##### Možné parametre pre filtrovanie, číselníky hodnôt sa nachádzajú pod zoznamom parametrov  
+Vrátí seznam vystavených faktur
+##### Parametry:
+* **$params** *pole* povinné. Parametry pro filtrování a stránkování. 
+* **$list_info** *bool* nepovinné. Určuje zda vrácená data budou obsahovat i údaje o seznamu (celkový počet položek, počet stránek...)
+ 
+##### možné parametry pro filtrování, seznam hodnot se nachází pod seznamem parametrů: 
 
 ```php
-Array(
-	'page'          => 1, //Strana
-	'per_page'      => 10, //Počet položiek na stranu
-	'created'       => 0, //Dátum vystavenia.
-	'delivery'      => 0, //Dátum dodania.
-	'type'          => 'regular', //Typ faktúry. Viacero typov je možné kombinovať pomocou "|" napr. "regular|cancel"
-	'delivery_type' => 'mail', //Typ faktúry. Viacero typov je možné kombinovať pomocou "|" napr. "mail|personal"
-	'payment_type'  => 'transfer', //Typ faktúry. Viacero typov je možné kombinovať pomocou "|" napr. "mail|personal"
-	'status'        => 0, //Stav faktúry.
-	'client_id'     => 1, //ID klienta. Zoznam klientov je možné získať metódou clients()
-	'amount_from'   => 0, //Suma faktúry od
-	'amount_to'     => 0, //Suma faktúry do
-	'paid_since'    => 0, //Faktúra uhradená od
-	'paid_to'       => 0, //Faktúra uhradená do
-	'search'        => '', //Hľadaný výraz vo faktúre. Prehľadáva všetky polia.
-	'ignore'        => '1|2|3', //ID faktúr, ktoré sa majú ignorovať.
+array( 
+	'page' => 1, //Stránka 
+	'per_page' => 10, //Počet položek na stránku 
+	'created' => 0, //Datum vystavení. 
+	'delivery' => 0, //Datum dodání. 
+	'type' => 'regular', //Typ faktury. Více typů je možné kombinovat pomocí "|" např. "regular|cancel" 
+	'delivery_type' => 'mail', //Typ faktúry. Viíce typů je možné kombinovat pomocí "|" např. "mail|personal" 			'payment_type' => 'transfer', //Typ faktúry. Více typů je možné kombinovat pomocí "|" např. "mail|personal" 
+	'status' => 0, //Stav faktury. 
+	'client_id' => 1, //ID klienta. Seznam klientů je možné získat metodou clients() 
+	'amount_from' => 0, //Suma faktury od 
+	'amount_to' => 0, //Suma faktury do 
+	'paid_since' => 0, //Faktura uhrazená od 
+	'paid_to' => 0, //Faktura uhrazená do 
+	'search' => '', //Hledaný výraz ve faktuře. Prohledává všechny pole. 
+	'ignore' => '1|2|3', //ID faktur, které se mají ignorovat. 
 )
 ```
 
-##### Formát vrátených dát
+#####Formát vrácených dat
 
 ```php
-{
-    "itemCount": 67,
-    "pageCount": 7,
-    "perPage": 10,
-    "page": 1,
-    "items": [{
-        "Client": {...},
-        "Invoice": {"id": "8358",...}
-        "InvoicePayment": {},
-        "InvoiceEmail": {},
-        "PostStamp": {}
-    },...]
-}
+{ 
+	"itemCount": 67, 
+	"pageCount": 7, 
+	"perPage": 10, 
+	"page": 1, 
+	"items": [{ 
+		"Client": {...}, 
+		"Invoice": {"id": "8358",...} 
+		"InvoicePayment": {}, 
+		"InvoiceEmail": {}, 
+		"PostStamp": {} 
+	},...] 
+} 
 ```
-##### Číselníky pre filtrovanie faktúr
-Obdobie vystavenia a dodania faktúry
+
+##### Číselníky pro filtrování faktur: Období vystavení a dodaní faktury
+
 ```php
-Array
-(
-    [0] => Všetko
-    [1] => Dnes
-    [2] => Včera
-    [4] => Tento mesiac
-    [5] => Minulý mesiac
-    [8] => Tento kvartál
-    [7] => Minulý rok
-    [6] => Tento rok
-    [3] => od - do //v prípade hodnoty od - do je potrebné uviesť aj parametre created_since a created_to
+Array ( 
+	[0] => Všechno 
+	[1] => Dnes 
+	[2] => Včera 
+	[4] => Tento měsíc 
+	[5] => Minulý měsíc 
+	[8] => Tento kvartál 
+	[7] => Minulý rok 
+	[6] => Tento rok 
+	[3] => od - do //v případě hodnoty od - do je potřeba uvést i parametry created_since a created_to 
 )
 ```
-  Typ faktúry
+ Typ faktury
 ```php
-Array
-(
-	[regular]  => Bežná
-	[proforma] => Zálohová faktúra
-	[estimate] => Cenová ponuka
-	[cancel]   => Dobropis
+Array ( 
+	[regular] => Bežná 
+	[proforma] => Zálohová faktura 
+	[estimate] => Cenová nabídka 
+	[cancel] => Dobropis 
 )
-  ```
-  Spôsob dodania
-  ```php  
-Array
-(
-	[mail]     => Poštou
-	[courier]  => Kuriérom
-	[personal] => Osobný odber
-	[haulage]  => Nákladná doprava
+```
+Způsob dodání
+```php
+Array ( 
+	[mail] => Poštou 
+	[courier] => Kurýrem 
+	[personal] => Osobní odběr 
+	[haulage] => Nákladní doprava 
 )
-  ```
-  Stav faktúry
-  ```php   
-  Array
-(
-	[0]  => Všetko
-	[1]  => Čakajú na úhradu
-	[2]  => Čiastočne uhradené
-	[3]  => Uhradené
-	[99] => Po splatnosti
+```
+Způsob úhrady
+```php
+Array ( 
+	[transfer] => Bankovním převodem 
+	[cash] => Hotovost 
+	[paypal] => Paypal 
+	[trustpay] => Trustpay 
+	[credit] => Kreditní karta 
+	[debit] => Debitní karta 
+	[cod] => Dobírka 
+	[accreditation] => Vzájemný zápočet 
 )
-  ```
-  
+```
+Stav faktury
+```php
+Array ( 
+	[0] => Všechno 
+	[1] => Čekají na uhrazení 
+	[2] => Částečně uhrazené 
+	[3] => Uhrazené 
+	[99] => Po splatnosti 
+)
+```
+Příklad filtrování faktur pomocí ID číselníku
+```php
+require_once('SFAPIclient/SFAPIclient.php');  // inc. SuperFaktúra PHP-API
+$login_email = 'login@example.com';  // moja.superfaktura.sk login email
+$api_token = 'abcd1234';  // token from my account
+$sf_api = new SFAPIclient($login_email, $api_token);  // create SF PHP-API object
+$json_response = $sf_api->invoices(array(
+	'sequence_id' => ID, // integer
+	'type' => 'regular'
+));
+```
+
 ### 18. markAsSent
-Označí faktúru ako odoslanú emailom. Užitočné, pokiaľ vytvorené faktúry odosielate vlastným systémom, avšak chcete toto odoslanie evidovať aj v SuperFaktúre.
-##### Parametre
-* **$invoice_id** int povinné. Získané z Invoice->id
-* **$email** string povinné. Emailová adresa, kam bola faktúra odoslaná.
-* **$subject** string nepovinné. Predmet emailu.
-* **$message** string nepovinné. Text emailu.
-##### Návratová hodnota: objekt
+Označí fakturu jako odeslanou e-mailem. Užitečné, pokud vytvořené faktury odosíláte vlastním systémem, avšak chcete toto odoslání evidovat i v SuperFaktuře.
+#####Parametry:
+* **$invoice_id** *int* povinné. Získané z Invoice->id 
+* **$email** *string* povinné. E-mailová adresa, kam byla faktura odeslaná. 
+* **$subject** *string* nepovinné. Předmět e-mailu. 
+* **$message** *string* nepovinné. Text e-mailu. 
 
 ### 19. payInvoice
-Dodatočne pridá úhradu ku faktúre.
-##### Parametre
-* **$invoice_id** int povinné. Získané z Invoice->id
-* **$amount** float povinné. Uhradená suma.
-* **$currency** string nepovinné. Mena úhrady, predvolené EUR.
-* **$date** string nepovinné. Dátum úhrady, predvolený aktuálny dátum.
-* **$payment_type** string nepovinné. Spôsob úhrady, predvolený typ transfer. Možné hodnoty {cash,transfer,credit,paypal,cod}
+Dodatečně přidá úhradu k faktuře.
+##### Parametry:
+* **$invoice_id** *int* povinné. Získané z Invoice->id 
+* **$amount** *float* povinné. Uhrazená suma. 
+* **$currency** *string* nepovinné. Měna úhrady, předvolená CZK. 
+* **$date** *string* nepovinné. Datum úhrady, předvolený aktuální datum. 
+* **$payment_type** *string* nepovinné. Způsob úhrady, předvolený typ transfer. Možné hodnoty {cash,transfer,credit,paypal,cod}
+
+#####Návratová hodnota: objekt
 
 ### 20. payExpense
-Dodatočne pridá úhradu k nákladu.
-##### Parametre
-* **$expense_id** int povinné. Získané z Expense->id
-* **$amount** float povinné. Uhradená suma.
-* **$currency** string nepovinné. Mena úhrady, predvolené EUR.
-* **$date** string nepovinné. Dátum úhrady, predvolený aktuálny dátum.
-* **$payment_type** string nepovinné. Spôsob úhrady, predvolený typ transfer. Možné hodnoty {cash,transfer,credit,paypal,cod}
+Dodatečně přidá úhradu k nákladu.
+#####Parametry:
+* **$expense_id** *int* povinné. Získané z Expense->id 
+* **$amount** *float* povinné. Uhradená suma. 
+* **$currency** *string* nepovinné. Měna úhrady, předvolená CZK. 
+* **$date** *string* nepovinné. Datum úhrady, předvolený aktuální datum. 
+* **$payment_type** *string* nepovinné. Způsob úhrady, předvolený typ transfer. Možné hodnoty {cash,transfer,credit,paypal,cod} 
 
-### 21. save
-Uloží nastavené dáta a vystaví faktúru.
-##### Paramete: žiadne
-##### Návratová hodnota: objekt
+###21. save
+Uloží nastavené data a vystaví fakturu
+#####Parametry: žádné
+#####Návratová hodnota: objekt
 ```php
 {
     "error": 0,
@@ -689,54 +699,54 @@ Uloží nastavené dáta a vystaví faktúru.
     }
 }
 ```
-##### Kódy chýb
-* **2** Dáta neboli odoslané metódou POST.
-* **3** Nesprávne dáta. Odoslané dáta nemajú správny formát.
-* **5** Validačný error. Povinné údaje chýbajú alebo sú nesprávne vyplnené.
+#####Kódy chyb:
+* **2** Data nebyly odeslané metodou POST. 
+* **3** Špatná data. Odeslané data nemají správný formát. 
+* **5** Validačný chyba. Povinné údaje chýbějí nebo nejsou správně vyplněné. 
 
 ### 22. setExpense
-Nastaví hodnoty pre náklad.
-##### Paramete
-* **$key** mixed povinné. Môže byť string, alebo pole. Ak je string, nastaví sa konkrétna hodnota v $data['Expense'][$key]. Ak je pole, nastaví sa viacero hodnôt naraz.
-* **$value** mixed nepovinné. Ak je $key string, hodnota $value sa nastaví v $data['Expense'][$key]. Ak je $key pole, $value sa ignoruje.
+Nastaví hodnoty pro náklad
+##### Parametry:
+* **$key** mixed povinné. Může být string nebo pole. Pokud je string, nastaví se konkrétní hodnota v $data['Expense'][$key]. Pokud je pole, nastaví se více hodnot najednou. 
+* **$value** mixed nepovinné. Pokud je $key string, hodnota $value se nastaví v $data['Expense'][$key]. Pokud je $key pole, $value se ignoruje. 
 
-Príklad použitia:
-  ```php 
-$api->setExpense('name', 'nazov nakladu');
-  ```
-  ```php 
-$api->setExpense(array(
-		'name' => 'nazov nakladu', // povinný udaj
-		'amount' => 10, // suma bez DPH
-		'vat' => 20, // DPH v percentách
-		'variable' => '123456', // variabilný symbol
-		'constant' => '0308' // konštantný symbol
+Příklad použití:
+```php
+$api->setExpense('name', 'název nákladu');
+```
+```php
+$api->setExpense(array( 
+			'name' => 'název nákladu', // povinný udaj 
+			'amount' => 10, // suma bez DPH 
+			'vat' => 20, // DPH v procentech 
+			'variable' => '123456', // variabilní symbol 
+			'constant' => '0308' // konstanuložítní symbol 
 ));
-  ```
+```
 
-Zoznam možných vlastností nákladu:
-* **name** - názov nákladu (povinný údaj)
-* **amount** - suma bez dane
-* **vat** - DPH (percentá)
-* **already_paid** - bola už faktúra uhradená? true/false
-* **created** - dátum vystavenia
-* **comment** - komentár
-* **constant** - konštantný symbol
-* **delivery** - dátum dodania
-* **due** - dátum splatnosti
-* **currency** - mena, v ktorej je faktúra vystavená. Možnosti: EUR, USD, GBP, HUF, CZK, PLN, CHF, RUB
-* **payment_type** - Spôsob úhrady, číselník hodnôt
-* **specific** - špecifický symbol
-* **type** - typ faktúry. Možnosti: invoice - prijatá faktúra, bill - pokladničný blok, internal - interný doklad, contribution - odvody
-* **variable** - variabilný symbol
+Seznam možných vlastností nákladu
+* **name** - název nákladu (povinný údaj) 
+* **amount** - suma bez daně 
+* **vat** - DPH (v procentech) 
+* **already_paid** - byla už faktura uhrazená? true/false 
+* **created** - datum vystavení 
+* **comment** - komentář 
+* **constant** - konstantní symbol 
+* **delivery** - datum dodání 
+* **due** - datum splatnosti 
+* **currency** - měna, ve které je faktura vystavená. Možnosti: EUR, USD, GBP, HUF, CZK, PLN, CHF, RUB 
+* **payment_type** - Způsob úhrady, číselník hodnot 
+* **specific** - specifický symbol 
+* **type** - typ faktury. Možnosti: invoice - přijatá faktura, bill - pokladní blok, internal - interní doklad, contribution - odvody 
+* **variable** - variabilní symbol 
 
-### 23. setInvoice
-Nastaví hodnoty pre faktúru
-##### Parametre
-* *$key* mixed povinné. Môže byť string, alebo pole. Ak je string, nastaví sa konkrétna hodnota v $data['Invoice'][$key]. Ak je pole, nastaví sa viacero hodnôt naraz.
-* *$value* mixed nepovinné. Ak je $key string, hodnota $value sa nastaví v $data['Invoice'][$key]. Ak je $key pole, $value sa ignoruje.
+###23. setInvoice
+Nastaví hodnoty pro fakturu
+#####Parametry:
+* **$key** mixed povinné. Může být string nebo pole. Pokud je string, nastaví se konkrétní hodnota v $data['Invoice'][$key]. Pokud je pole, nastaví se více hodnot najednou. 
+* **$value** mixed nepovinné. Pokud je $key string, hodnota $value se nastaví v $data['Invoice'][$key]. Pokud je $key pole, $value se ignoruje.
 
-Príklad použitia:
+Příklad použití:
   ```php 
 $api->setInvoice('name', 'nazov faktury');
   ```
@@ -757,309 +767,299 @@ $api->setInvoice(array(
 ));
   ``` 
 
-Zoznam možných vlastností faktúry:
-* **already_paid** - bola už faktúra uhradená? true/false
-* **created** - dátum vystavenia
-* **comment** - komentár
-* **constant** - konštantný symbol
-* **delivery** - dátum dodania
-* **delivery_type** - spôsob dodania, číselník hodnôt
-* **deposit** - uhradená záloha
-* **discount** - zľava v %
-* **due** - dátum splatnosti
-* **estimate_id** - ID cenovej ponuky, na základe ktorej je faktúra vystavená
-* **header_comment** - Text nad položkami faktúry
-* **internal_comment** - Interná poznánka, nezobrazuje sa klientovi
-* **invoice_currency** - mena, v ktorej je faktúra vystavená. Možnosti: EUR, USD, GBP, HUF, CZK, PLN, CHF, RUB
-* **invoice_no_formatted** - číslo faktúry
-* **issued_by** - faktúru vystavil
-* **issued_by_phone** - faktúru vystavil telefón
-* **issued_by_email** - faktúru vystavil email
-* **name** - názov faktúry
-* **payment_type** - Spôsob úhrady, číselník hodnôt
-* **proforma_id** - ID proforma faktúry, na základe ktorej sa vystavuje ostrá faktúra. Ostrá faktúra tak preberie údaje o uhradenej zálohe
-* **rounding** - Spôsob zaokrúhľovania DPH. 'document' => za celý dokument, 'item' => po položkaćh (predvolená hodnota)
-* **specific** - špecifický symbol
-* **sequence_id** - ID číselníka, zoznam číselníkov je možné získať metódou getSequences
-* **type** - typ faktúry. Možnosti: regular - bežná faktúra, proforma - zálohová faktúra, cancel - dobropis, estimate - cenová ponuka, order - prijatá objednávka
-* **variable** - variabilný symbol
-* **bank_accounts** - (pole) zoznam bankových účtov (pozri príklad vyššie)
+Seznam možných vlastností faktury
+* **already_paid** - byla už faktura uhrazená? true/false 
+* **created** - datum vystavení 
+* **comment** - komentář 
+* **constant** - konstantný symbol 
+* **delivery** - datum dodání 
+* **delivery_type** - spůsob dodání, číselník hodnot 
+* **deposit** - uhrazená záloha 
+* **discount** - sleva v % 
+* **due** - datum splatnosti 
+* **estimate_id** - ID cenové nabídky, na základě které je faktura vystavená 
+* **header_comment** - Text nad položkami faktury 
+* **internal_comment** - Interní poznámka, nezobrazuje se klientovi 
+* **invoice_currency** - měna, ve ktoré je faktura vystavená. Možnosti: EUR, USD, GBP, HUF, CZK, PLN, CHF, RUB 
+* **invoice_no_formatted** - číslo faktury 
+* **issued_by** - fakturu vystavil jméno 
+* **issued_by_phone** - fakturu vystavil telefon 
+* **issued_by_email** - fakturu vystavil e-mail 
+* **name** - název faktury 
+* **payment_type** - Způsob úhrady, číselník hodnot 
+* **proforma_id** - ID proforma faktury, na základě ktoré se vystavuje ostrá faktura. Ostrá faktura tak přebere údaje o uhrazené záloze 
+* **rounding** - Způsob zaokrouhlování DPH. 'document' => za celý dokument, 'item' => po položkách (předvolená hodnota) 
+* **specific** - specifický symbol 
+* **sequence_id** - ID číselníku, seznam číselníků je možné získat metodou getSequences 
+* **type** - typ faktury. Možnosti: regular - běžná faktura, proforma - zálohová faktura, cancel - dobropis, estimate - cenová nabídka, order - přijatá objednávka 
+* **variable** - variabilní symbol 
+* **bank_accounts** - (pole) seznam bankovních účtů (viz příklad výše)
 
-### 24. sendInvoiceEmail
-Odošle faktúru emailom.
-##### Parametre
-* **$options** *array*, povinné.
+###24. sendInvoiceEmail
+Odešle fakturu emailem
+#####Parametry:
+* **$options** *array*, povinné. 
 Príklad použitia:
 
- ```php 
-$api->sendInvoiceEmail(array(
-			'invoice_id' => 123456, // povinné
-			'to' => 'example@example.com', // povinné
-			'cc' => array(
-				'examplecc@examplecc.com'
-			),
-			'bcc' => array(
-				'examplebcc@examplebcc.com'
-			),
-			// 'subject' => 'Predmet', // pokial nie je nastaveny subject nastavi sa automaticky podla nastaveni
-			// 'body' => 'Sprava' // pokial nie je nastaveny body nastavi sa automaticky podla nastaveni
+```php
+$api->sendInvoiceEmail(array( 
+			'invoice_id' => 123456, // povinné 
+			'to' => 'example@example.com', // povinné 
+			'cc' => array( 'examplecc@examplecc.com' ), 
+			'bcc' => array( 'examplebcc@examplebcc.com' ), 
+			// 'subject' => 'Předmět', // pokud není nastavený subject nastaví se automaticky z e-mailové šablony v nastavení 
+			// 'body' => 'Zpráva' // pokud není nastavené body nastaví se automaticky z e-mailové šablony v nastavení 
 ));
- ```
- 
-Zoznam možných nastavení:
-* **invoice_id** *integer*, id faktúry, ktorú chcete odoslať (povinné)
-* **to** *string*, na akú emailovú adresu sa má faktúra odoslať (povinné)
-* **cc** *array*, cc
-* **bcc** *array*, bcc
-* **subject** *string*, predmet
-* **body** *string*, telo správy
-
-### 25. sendInvoicePost
-Odošle faktúru poštou.
-##### Parametre
-* **$options** *array*, povinné.
-
-Príklad použitia:
-  ```php 
-$api->sendInvoicePost(array(
-	'invoice_id' => 123456, // povinné
-	/** > POKIAL NIE SU NASTAVENE VYTIAHNU SA Z FAKTURY < *
-	 ******************************************************
-	 'delivery_address' => 'Adresa 123',
-	 'delivery_city' => 'Mesto',
-	 'delivery_state' => 'Slovenská republika'
-	 ******************************************************/
-));
-  ```
-Zoznam možných nastavení: 
-* **invoice_id** *integer*, id faktúry, ktorú chcete odoslať (povinné)
-
-### 26. stockItemEdit
-Aktualizuje skladovú položku.
-##### Parametre 
-* **$item** *array*, povinné.
-
-Príklad použitia:
-  ```php 
-$api->stockItemEdit(array(
-	'stock_item_id' => 123456, // povinné
-	'name' => '*New stock item name', // novy nazov skladovej polozky
-	'sku' => 'NEWST06K1T3M1D' // nove SKU
-));
-  ```  
-Zoznam možných nastavení:
-* **id** *integer*, id skladovej položky
-* **name** *string*, názov skladovej položky
-* **description** *string*, popis skladovej položky
-* **sku** *string*, skladové číslo
-* **unit_price** *integer*, jednotková cena bez DPH
-* **vat** *integer*, DPH v percentách
-* **stock** *integer*, počet kusov na sklade. Pokiaľ sa vynechá nebude sa sledovať stav zásob.
-* **unit** *string*, jednotka napr. ks, mm, m2, dm3, l.
-
-### 27. addStockItem
-Pridá skladovú položku.
-##### Parametre 
-* **$item** *array*, povinné.
-
-Príklad použitia:
-  ```php 
-$api->addStockItem(array(
-			'name' => 'Stock item example', // nazov skladovej polozky
-			'description' => 'Stock item description', // popis
-			'sku' => 'SKU12345REF', // skladove cislo
-			'unit_price' => 10, // jednotkova cena bez DPH
-			'vat' => 20, // DPH v percentach
-			'stock' => 100 // pocet kusov na sklade, ak nie je definovane nebudu sa sledovat pohyby
-));
-  ```  
-Zoznam možných nastavení:
-* **name** *string*, názov skladovej položky
-* **description** *string*, popis skladovej položky
-* **sku** *string*, skladové číslo
-* **unit_price** *integer*, jednotková cena bez DPH
-* **vat** *integer*, DPH v percentách
-* **stock** *integer*, počet kusov na sklade. Pokiaľ sa vynechá nebude sa sledovať stav zásob.
-* **unit** *string*, jednotka napr. ks, mm, m2, dm3, l.
-
-### 28. addStockMovement
-Pridá pohyb na sklade.
-##### Parametre 
-* **$item** *array*, povinné.
-
-Príklad použitia:
-  ```php
-$api->addStockMovement(array(
-	'stock_item_id' => 0, // id skladovej polozky
-	'name' => 'Stock item example', // nazov skladovej polozky
-	'description' => 'Stock item description', // popis
-	'sku' => 'SKU12345REF', // skladove cislo
-	'unit_price' => 10, // jednotkova cena bez DPH
-	'vat' => 20, // DPH v percentach
-	'stock' => 100 // pocet kusov na sklade, ak nie je definovane nebudu sa sledovat pohyby
-));
-  ```   
-Zoznam možných nastavení:
-* **stock_item_id** *iteger*, id skladovej položky, ku ktorej chceme pridať pohyb
-* **quantity** *integer*, pohyb - záporné číslo je výdaj, kladné príjem
-* **note** *string*, popis pohybu
-* **created** *date* 'YEAR-MONTH-DAY' formát, dátum
-
-### 29. setClient
-Nastaví hodnoty pre klienta.
-##### Parametre
-Zhodné so setInvoice.
-
-Zoznam možných vlastností klienta:
-* **address** - adresa
-* **bank_account** - bankový účet
-* **city** - mesto
-* **comment** - komentár
-* **country_id** - ID krajiny, číselník krajín je možné získať metódou getCountries
-* **country_iso_id** ISO 3166-1 (Alpha-2) kod krajiny
-* **country** - vlastný názov krajiny
-* **delivery_address** - dodacia adresa
-* **delivery_city** - dodacie mesto
-* **delivery_country** - vlastná dodacia krajina
-* **delivery_country_id** - ID dodacej krajiny
-* **delivery_country_iso_id** ISO 3166-1 (Alpha-2) kod krajiny
-* **delivery_name** - názov klienta pre dodanie
-* **delivery_zip** - dodacie PSČ
-* **dic** - DIČ
-* **email** - email
-* **fax** - fax
-* **ic_dph** - IČ DPH
-* **ico** - IČO
-* **name** - názov klienta *(údaj je povinný)*
-* **phone** - telefón
-* **zip** - PSČ
-* **match_address** (boolean) - pokiaľ je tento parameter nastavený, do hľadania klienta vstupuje aj adresa.
-* **update_addressbook** (boolean) - pri vystavení faktúry aktualizuje údaje klienta !!!
-
-### 30. stockItems
-Vráti zoznam skladových položiek.
-##### Parametre
-* **$params** pole povinné. Parametre pre filtrovanie a stránkovanie.
-* **$list_info** bool nepovinné. Určuje, či vrátené dáta budú obsahovať aj údaje o zozname (celkový počet položiek, počet strán...)
-
-##### Možné parametre pre filtrovanie
-  ```php
- array(
-	'page'          => 1, //Strana
-	'per_page'      => 10, //Počet položiek na stranu
-	'price_from'    => 0, //Cena od
-	'price_to'      => 0, //Cena do
-	'search'        => '', //Hľadaný výraz. Prehľadáva všetky polia.
-) 
-  ``` 
-##### Formát vrátených dát
-  ```php
-{
-    "itemCount": 67,
-    "pageCount": 7,
-    "perPage": 10,
-    "page": 1,
-    "items": [{
-        "StockItem": {...},
-    },...]
-}
 ```
- 
-### 31. stockItem
-Vráti detaily skladovej položky.
-##### Parametre
-* **$stock_item_id** int povinné. Získané z StockItem->id.
 
-### 32. addContactPerson($data)
-Pridá novú kontaktnú osobu k existujúcemu klientovi. Návratová hodnota je objekt (JSON). Pokiaľ operácia prebehla bez problémov je nastavený atribút status na hodnotu (string) 'SUCCESS'.
+Seznam možných nastavení
+* **invoice_id** *integer*, id faktury, kterou chcete odeslat (povinné) 
+* **to** *string*, na kterou e-mailovou adresu se má faktura odeslat (povinné) 
+* **cc** *array*, cc 
+* **bcc** *array*, bcc 
+* **subject** *string*, předmět 
+* **body** *string*, tělo zprávy 
+
+###25. sendInvoicePost
+Odešle fakturu poštou
+#####Parametry:
+* **$options** *array*, povinné. 
+
+Příklad použití:
+```php
+$api->sendInvoicePost(array( 
+			'invoice_id' => 123456, // povinné 
+			/** > POKUD NEJSOU NASTAVEÉ VYTÁHNOU SE Z FAKTURY < *
+			****************************************************** 
+			'delivery_address' => 'Adresa 123', 
+			'delivery_city' => 'Město', 
+			'delivery_state' => 'Česká republika' 
+			******************************************************/ 
+));
+```
+Seznam možných nastavení
+invoice_id integer, id faktury, kterou chcete odeslat (povinné) 
+
+###26. stockItemEdit
+Aktualizuje skladovou položku
+#####Parametry:
+* **$item** *array*, povinné. 
+
+Příklad použití:
+```php
+$api->stockItemEdit(array( 
+			'stock_item_id' => 123456, // povinné 
+			'name' => '*New stock item name', // nový název skladové položky 
+			'sku' => 'NEWST06K1T3M1D' // nové SKU 
+));
+```
+Seznam možných nastavení
+* **id** *integer*, id skladové položky 
+* **name**  *string*, název skladové položky 
+* **description** *string*, popis skladové položky 
+* **sku** *string*, skladové číslo 
+* **unit_price** *integer*, jednotková cena bez DPH 
+* **vat** *integer*, DPH v procentech 
+* **stock** *integer*, počet kusů na skladu. Pokud se vynechá nebude se sledovat stav zásob. 
+* **unit** *string*, jednotka např. ks, mm, m2, dm3, l. 
+
+###27. addStockItem
+Přidá skladovou položku
+#####Parametry:
+* **$item** *array*, povinné. 
+
+Příklad použití:
+```php
+$api->addStockItem(array( 
+			'name' => 'Stock item example', // název skladové položky 
+			'description' => 'Stock item description',  
+			'sku' => 'SKU12345REF', // skladové číslo 
+			'unit_price' => 10, // jednotková cena bez DPH 
+			'vat' => 20, // DPH v procentech 
+			'stock' => 100 // počet kusů na skladu, pokud není definované nebudou se sledovat pohyby 
+));
+```
+Seznam možných nastavení
+* **name** *string*, název skladové položky 
+* **description** *string*, popis skladové položky 
+* **sku** *string*, skladové číslo 
+* **unit_price** *integer*, jednotková cena bez DPH 
+* **vat** *integer*, DPH v procentech 
+* **stock** *integer*, počet kusů na skladu. Pokud se vynechá nebude se sledovat stav zásob. 
+* **unit** *string*, jednotka např. ks, mm, m2, dm3, l. 
+
+###28. addStockMovement
+Přidá pohyb na skladě
+#####Parametry:
+* **$item** *array*, povinné. 
+
+Příklad použití:
+```php
+$api->addStockMovement(array( 
+			'stock_item_id' => 0, // id skladové položky 
+			'name' => 'Stock item example', // název skladové položky 
+			'description' => 'Stock item description', 
+			'sku' => 'SKU12345REF', // skladové číslo 
+			'unit_price' => 10, // jednotková cena bez DPH 
+			'vat' => 20, // DPH v procentech 
+			'stock' => 100 // počet kusů na skladu, pokud není definovaný nebudou se sledovat pohyby 
+));
+```
+Seznam možných nastavení
+* **stock_item_id** *iteger*, id skladové položky, ke které chceme přidat pohyb 
+* **quantity** *integer*, pohyb - záporné číslo je výdaj, kladné příjem 
+* **note** *string*, popis pohybu 
+* **created** *date* 'YEAR-MONTH-DAY' format, datum 
+
+###29. setClient
+Nastaví hodnoty pro klienta
+#####Parametry:
+Shodné se setInvoice
+
+Seznam možných vlastností klienta
+* **address** - adresa 
+* **bank_account** - bankovní účet 
+* **city** - město 
+* **comment** - komentář 
+* **country_id** - ID země, číselník zemí je možné získat metodou getCountries 
+* **country_iso_id** ISO 3166-1 (Alpha-2) kód země 
+* **country** - vlastní název země 
+* **delivery_address** - dodací adresa 
+* **delivery_city** - dodací město 
+* **delivery_country** - vlastní dodací země 
+* **delivery_country_id** - ID dodací země 
+* **delivery_country_iso_id** ISO 3166-1 (Alpha-2) kód země 
+* **delivery_name** - název klienta pro dodání 
+* **delivery_zip** - dodací PSČ 
+* **dic** - DIČ 
+* **email** - e-mail 
+* **fax** - fax 
+* **ic_dph** - IČ DPH 
+* **ico** - IČ 
+* **name** - název klienta 
+* **phone** - telefon 
+* **zip** - PSČ 
+* **match_address** (boolean) - pokud je tento parameter nastavený, do hledaní klienta vstupuje i adresa. 
+* **update_addressbook** (boolean) - při vystavení faktury aktualizuje údaje klienta
+
+###30. stockItems
+Vrátí seznam skladových položek
+#####Parametry:
+* **$params** pole povinné. Parametry pro filtrování a stránkování. 
+* **$list_info** bool nepovinné. Určuje, jestli vrácené data budou obsahovat i údaje o seznamu (celkový počet položek, počet stránek...)
+
+#####možné parametry pro filtrování: 
+```php
+array( 
+	'page' => 1, //Stránka 
+	'per_page' => 10, //Počet položek na stránku 
+	'price_from' => 0, //Cena od 
+	'price_to' => 0, //Cena do 
+	'search' => '', //Hledaný výraz. Prohledáva všechny pole. 
+)
+```
+Formát vrácených dat
+{ 
+	"itemCount": 67, 
+	"pageCount": 7, 
+	"perPage": 10, 
+	"page": 1, 
+	"items": [{ "StockItem": {...}, 
+	}, ...] 
+}
+
+###31. stockItem
+Vrátí detail skladové položky
+#####Parametry:
+* **$stock_item_id** int povinné. Získané z StockItem->id. 
+
+###32. addContactPerson($data)
+Přidá novou kontaktní osobu ke stávajícímu klientovi. Návratová hodnota je objekt (JSON). Pokud operace proběhla bez problémů je nastaven atribut status na hodnotu (string) 'SUCCESS'.
 ```php
 $result = $api->addContactPerson(array(
-	'client_id' => ID_KLIENTA,  // ID existujuceho klienta
-	'name' => 'Contact Person',  // Nazov kotaktnej osoby
-	'email' => 'email@example.com'  // Email pre kontaktnu osobu
+    		'client_id' => ID_KLIENTA,  // ID existujuceho klienta
+    		'name' => 'Contact Person',  // Nazov kotaktnej osoby
+    		'email' => 'email@example.com'  // Email pre kontaktnu osobu
 ));
 if ($result->status === 'SUCCESS')
-	...;
-```
-
-### Autorizácia
-Pre prihlásenie sa do API je potrebný email, na ktorý je konto zaregistrované a API Token, ktorý je možné nájsť v Nástrojoch > API.
-Samotná autorizácia sa vykonáva pomocou hlavičky "Authorization", ktorá ma nasledujúci tvar:
- ```php
-"Authorization: SFAPI email=EMAIL&apikey=APITOKEN"
+    ...;
  ```
- Túto hlavičku musí obsahovať každý request na SF API!
- 
-### Vystavenie faktúry
-Pokiaľ sa Vám nepáči náš SF API klient a chcete si faktúry vystavovať posvojom, tak nech sa páči:
-Endpoint pre vystavenie faktúry sa nachádza na adrese https://moja.superfaktura.sk/invoices/create
-Dáta pre vystavenie faktúry očakáva vo formáte JSON v $POST['data'] v nasledujúcej forme:
+###Autorizace
+Pro přihlášení se do API je potřebný e-mail, na který je účet zaregistrovaný a API Token, který je možné nalézt v Nástroje > API.
+Samotná autorizace se vykonáva pomocí hlavičky "Authorization", která má nasledující tvar:
 ```php
-$data = array(
-	'Invoice' => array(
-		//vsetky polozky su nepovinne, v pripade ze nie su uvedene, budu doplnene automaticky
-		'name'                 => 'nazov faktury',
-		'variable'             => '123456',
-		'constant'             => '0308',
-		'specific'             => '2015', //specificky symbol
-		'already_paid'         => true, // bola uz faktura uhradena?
-		'invoice_no_formatted' => '2015001', //ak nie je uvedene, SF ho doplni podla ciselnika
-		'created'              => '2015-08-31', //datum vystavenia
-		'delivery'             => '2015-08-31', //datum dodania
-		'due'                  => '2015-08-31', //datum splatnosti
-		'comment'              => 'komentar',
-	),
-	'Client' => array(
-		'name'    => 'Janko Hrasko',
-		'ico'     => '12345678',
-		'dic'     => '12345678',
-		'ic_dph'  => 'SK12345678',
-		'email'   => 'janko@hrasko.sk',
-		'address' => 'adresa',
-		'city'    => 'mesto',
-		'zip'     => 'psc',
-		'phone'   => 'telefon',
-	),
-	'InvoiceItem' => array(
-		array(
-			'name'        => 'Superfaktura.sk',
-			'description' => 'Členstvo',
-			'quantity'    => 1,
-			'unit'        => 'ks',
-			'unit_price'  => 40.83,
-			'tax'         => 20
-		),
-		array(
-			'name'        => 'Druhá položka',
-			'description' => '',
-			'quantity'    => 10,
-			'unit'        => 'ks',
-			'unit_price'  => 5,
-			'tax'         => 10
-		)
-	)
-);
-Samotný request s použitím napr. Requests knižnice potom môže vyzerať nasledovne:
-Requests::register_autoloader();
-$response = Requests::post('https://moja.superfaktura.sk/invoices/create',
-	$headers,
-	array('data' => json_encode($data))
-);
-$response_data = json_decode($response->body, true);
-výsledkom tohto volania je JSON odpoveď v nasledujúcej forme
-$response_data = array(
-	'error'         => 0,
-	'error_message' => 'Chybova hlaska',
-	'data'          => array(),
-);
- ```
- V prípade, ak došlo k nejakej chybe, bude error = 1 a error_message bude obsahovať popis chyby, ktorá nastala. V prípade, že chýb nastalo viac, bude error_message obsahovať pole s chybovými hláškami.
- 
-Ak bola faktúra úspešne vytvorená, budú v kľúči data uložené kompletné informácie o vytvorenej faktúre.
+"Authorization: SFAPI email=EMAIL&apikey=APITOKEN"
+```
+Tuto hlavičku musí obsahovat každý request na SF API! 
 
-### PDF faktúry
-Po vytvorení faktúry je možné stiahnuť jej PDF na adrese
- ```php
-https://moja.superfaktura.sk/invoices/pdf/ID_FAKTURY/token:TOKEN
- ```
- kde ID FAKTURY sa nachádza v $data['Invoice']['id'] a token v $data['Invoice']['token'].
+###Vystavení faktury
+Pokud se Vám nelíbí náš SF API klient a chcete si faktury vystavovat po svém:
+Endpoint pro vystavání faktury se nachází na adrese https://moje.superfaktura.cz/invoices/create
+Data pro vystavení faktury jsou očekávána ve formátu JSON v $POST['data'] v nasledující formě:
+```php
+$data = array( 
+	'Invoice' => array( //všechny položky jsou nepovinné, v připadě že nejsou uvedené, budu doplněné automaticky 
+				'name' => 'název faktury', 
+				'variable' => '123456', 
+				'constant' => '0308', 
+				'specific' => '2015', 
+				//specifický symbol 
+				'already_paid' => true, // byla už faktura uhrazena? 
+				'invoice_no_formatted' => '2015001', //pokud není uvedené, SF ho doplní podle číselníku
+				'created' => '2015-12-28', //datum vystavení 
+				'delivery' => '2015-12-28', //datum dodaní 
+				'due' => '2015-12-28', //datum splatnosti 
+				'comment' => 'komentář', 
+	), 
+	'Client' => array( 
+				'name' => 'Tomáš Janák', 
+				'ico' => '12345678', 
+				'dic' => '12345678', 
+				'ic_dph' => 'CZ12345678', 
+				'email' => 'info@superfaktura.cz', 
+				'address' => 'adresa', 
+				'city' => 'město', 
+				'zip' => 'psč', 
+				'phone' => 'telefon', 
+	), 
+	'InvoiceItem' => array( array( 
+					'name' => 'Superfaktura.cz', 
+					'description' => 'Předplatné', 
+					'quantity' => 1, 
+					'unit' => 'ks', 
+					'unit_price' => 150.83, 
+					'tax' => 21 
+				), 
+				array( 
+					'name' => 'Druhá položka', 
+					'description' => '', 
+					'quantity' => 10, 
+					'unit' => 'ks', 
+					'unit_price' => 5, 
+					'tax' => 15 
+				) 
+	) ); 
+Samotný request s použitím např. Requests knihovna potom může vypadat následovně:
+Requests::register_autoloader(); 
+$response = Requests::post('https://moje.superfaktura.cz/invoices/create', 
+		$headers, 
+		array('data' => json_encode($data)) 
+); 
+$response_data = json_decode($response->body, true); 
+výsledkem tohto volání je JSON odpověď v nasledující formě 
+$response_data = array( 
+			'error' => 0, 
+			'error_message' => 'Chybová hláška', 
+			'data' => array(), 
+);
+```
+V případě, pokud došlo k chybě, bude error = 1 a error_message bude obsahovat popis chyby, která nastala. V případě, že chyb nastalo více, bude error_message obsahovat pole s chybovými hláškami. 
+
+Pokud byla faktura úspešně vytvořená, bude v klíči data uložené kompletní informace o vytvořené faktuře. 
+
+###PDF faktury
+Po vytvoření faktury je možné stáhnut její PDF na adrese 
+```php
+https://moje.superfaktura.cz/invoices/pdf/ID_FAKTURY/token:TOKEN
+```
+kde ID FAKTURY se nachází v $data['Invoice']['id'] a token v $data['Invoice']['token']. 
