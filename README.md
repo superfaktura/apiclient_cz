@@ -706,7 +706,7 @@ Seznam možných vlastností faktury
 * **created** - datum vystavení 
 * **comment** - komentář 
 * **constant** - konstantný symbol 
-* **delivery** - datum dodání 
+* **delivery** - Zdanitelné plnění
 * **delivery_type** - spůsob dodání, číselník hodnot 
 * **deposit** - uhrazená záloha 
 * **discount** - sleva v % 
