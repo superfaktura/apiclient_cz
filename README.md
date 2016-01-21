@@ -300,11 +300,12 @@ Array (
 	[transfer] => Bankovním převodem 
 	[cash] => Hotovost 
 	[paypal] => Paypal 
-	[trustpay] => Trustpay 
 	[credit] => Kreditní karta 
 	[debit] => Debitní karta 
 	[cod] => Dobírka 
 	[accreditation] => Vzájemný zápočet 
+	[inkaso] => Inkaso
+	[gopay] => GoPay
 )
 ```
 Stav faktury
@@ -344,7 +345,7 @@ Dodatečně přidá úhradu k faktuře.
 * **$amount** *float* povinné. Uhrazená suma. 
 * **$currency** *string* nepovinné. Měna úhrady, předvolená CZK. 
 * **$date** *string* nepovinné. Datum úhrady, předvolený aktuální datum. 
-* **$payment_type** *string* nepovinné. Způsob úhrady, předvolený typ transfer. Možné hodnoty {cash,transfer,credit,paypal,cod}
+* **$payment_type** *string* nepovinné. Způsob úhrady, předvolený typ transfer. Možné hodnoty {transfer, cash, paypal, credit, debit, cod, accreditation, inkaso, gopay}
 
 #####Návratová hodnota: objekt
 
@@ -355,7 +356,7 @@ Dodatečně přidá úhradu k nákladu.
 * **$amount** *float* povinné. Uhradená suma. 
 * **$currency** *string* nepovinné. Měna úhrady, předvolená CZK. 
 * **$date** *string* nepovinné. Datum úhrady, předvolený aktuální datum. 
-* **$payment_type** *string* nepovinné. Způsob úhrady, předvolený typ transfer. Možné hodnoty {cash,transfer,credit,paypal,cod} 
+* **$payment_type** *string* nepovinné. Způsob úhrady, předvolený typ transfer. Možné hodnoty {transfer, cash, paypal, credit, debit, cod, accreditation, inkaso, gopay}
 
 ###21. save
 Uloží nastavené data a vystaví fakturu
