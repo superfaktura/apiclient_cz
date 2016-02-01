@@ -238,6 +238,7 @@ array(
 	'paid_to' => 0, //Faktura uhrazená do 
 	'search' => '', //Hledaný výraz ve faktuře. Prohledává všechny pole. 
 	'ignore' => '1|2|3', //ID faktur, které se mají ignorovat. 
+	'order_no'=> '2016001', //číslo cenové nabídky z níž byla FA vytvořena
 )
 ```
 
@@ -920,6 +921,9 @@ $result = $api->addContactPerson(array(
 if ($result->status === 'SUCCESS')
     ...;
  ```
+###33. getLogos()
+ Vrátí detaily všech log. Návratová hodnota je objekt (JSON).
+ 
 ###Autorizace
 Pro přihlášení se do API je potřebný e-mail, na který je účet zaregistrovaný a API Token, který je možné nalézt v Nástroje > API.
 Samotná autorizace se vykonáva pomocí hlavičky "Authorization", která má nasledující tvar:
