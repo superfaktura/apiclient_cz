@@ -227,7 +227,8 @@ array(
 	'page' => 1, //Stránka 
 	'per_page' => 10, //Počet položek na stránku 
 	'created' => 0, //Datum vystavení. 
-	'delivery' => 0, //Datum dodání. 
+	'delivery' => 0, //Datum dodání.
+	'modified' => 0, //Datum poslední změny.
 	'type' => 'regular', //Typ faktury. Více typů je možné kombinovat pomocí "|" např. "regular|cancel" 
 	'delivery_type' => 'mail', //Typ faktúry. Viíce typů je možné kombinovat pomocí "|" např. "mail|personal" 			'payment_type' => 'transfer', //Typ faktúry. Více typů je možné kombinovat pomocí "|" např. "mail|personal" 
 	'status' => 0, //Stav faktury. 
