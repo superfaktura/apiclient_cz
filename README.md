@@ -744,7 +744,8 @@ $api->sendInvoiceEmail(array(
 			'invoice_id' => 123456, // povinné 
 			'to' => 'example@example.com', // povinné 
 			'cc' => array( 'examplecc@examplecc.com' ), 
-			'bcc' => array( 'examplebcc@examplebcc.com' ), 
+			'bcc' => array( 'examplebcc@examplebcc.com' ),
+			'pdf_language' => eng, //pokud není nastavený nastaví se automaticky 
 			// 'subject' => 'Předmět', // pokud není nastavený subject nastaví se automaticky z e-mailové šablony v nastavení 
 			// 'body' => 'Zpráva' // pokud není nastavené body nastaví se automaticky z e-mailové šablony v nastavení 
 ));
@@ -757,6 +758,16 @@ Seznam možných nastavení
 * **bcc** *array*, bcc 
 * **subject** *string*, předmět 
 * **body** *string*, tělo zprávy 
+* **pdf_language** *string*, jazyk dokladu
+
+Seznam možných jazyků pro doklady:
+* 'slo' => slovenština
+* 'cze' => čeština
+* 'eng' => angličtina
+* 'deu' => němčina
+* 'rus' => ruština
+* 'ukr' => ukrajinština
+* 'hun' => maďarština
 
 ###25. sendInvoicePost
 Odešle fakturu poštou
