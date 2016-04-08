@@ -63,7 +63,7 @@ $json_response = $sf_api->save();
 ```
 
 ## Seznam volání (veřejných členských funkcí včetně konstruktoru třídy SFAPIclientCZ)
-* *__construct($email, $apikey)* 
+* *__construct($email, $apikey, $apptitle = '', $module = 'API', $company_id = '')*
 * *addItem($item = array())* 
 * *addStockItem($item = array())* 
 * *addStockMovement($item = array())* 
@@ -101,6 +101,9 @@ Konstruktor. Nastaví email a API token pro autorizaci.
 ####Parametry:
 * **$email** *string* povinný 
 * **$token** *string* povinný 
+* **$apptitle** string nepovinný, název aplikace
+* **$module** string nepovinný, název modulu 
+* **$company_id** integer nepovinný, ID společnosti, se kterou přes API pracujete (v případě, že máte jen jednu společnosti nemusíte uvádět)
 
 ### 2. addItem
 Přidá položku na fakturu.
@@ -887,6 +890,7 @@ Seznam možných vlastností klienta
 * **ico** - IČ 
 * **name** - název klienta 
 * **phone** - telefon 
+* **delivery_phone** - telefonní číslo pro dodání
 * **zip** - PSČ 
 * **match_address** (boolean) - pokud je tento parameter nastavený, do hledaní klienta vstupuje i adresa. 
 * **update_addressbook** (boolean) - při vystavení faktury aktualizuje údaje klienta
@@ -936,13 +940,19 @@ if ($result->status === 'SUCCESS')
 ###33. getLogos()
  Vrátí detaily všech log. Návratová hodnota je objekt (JSON).
  
+### 34. getExpenseCategories()
+Vrátí seznam všech kategorií nákladů. Návratová hodnota je objekt (JSON). 
+ 
 ###Autorizace
 Pro přihlášení se do API je potřebný e-mail, na který je účet zaregistrovaný a API Token, který je možné nalézt v Nástroje > API.
 Samotná autorizace se vykonáva pomocí hlavičky "Authorization", která má nasledující tvar:
 ```php
-"Authorization: SFAPI email=EMAIL&apikey=APITOKEN"
+"Authorization: SFAPI email=EMAIL&apikey=APITOKEN&company_id=COMPANYID"
 ```
-Tuto hlavičku musí obsahovat každý request na SF API! 
+
+company_id je nepovinný údaj, uvádí se pouze v případě, že máte pod vaším emailů vytvořených více společností a potřebujete určit, se kterou chcete pracovat
+
+> **Tuto hlavičku musí obsahovat každý request na SF API!** 
 
 ###Vystavení faktury
 Pokud se Vám nelíbí náš SF API klient a chcete si faktury vystavovat po svém:
