@@ -351,6 +351,7 @@ Dodatečně přidá úhradu k faktuře.
 * **$currency** *string* nepovinné. Měna úhrady, předvolená CZK. 
 * **$date** *string* nepovinné. Datum úhrady, předvolený aktuální datum. 
 * **$payment_type** *string* nepovinné. Způsob úhrady, předvolený typ transfer. Možné hodnoty {transfer, cash, paypal, credit, debit, cod, accreditation, inkaso, gopay}
+* **$force_pay** bool nepovinné. Určuje, zda se úhrada přidá i když už je faktura plně uhrazena.
 
 #####Návratová hodnota: objekt
 
