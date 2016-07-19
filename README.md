@@ -896,6 +896,8 @@ Seznam možných vlastností klienta
 * **match_address** (boolean) - pokud je tento parameter nastavený, do hledaní klienta vstupuje i adresa. 
 * **update_addressbook** (boolean) - při vystavení faktury aktualizuje údaje klienta
 
+V případě zahraničního klienta je potřebné správně vyplnit country_id. Když country_id zůstane prázdné, použije se předdefinovaná hodnota pro Českou republiku. Na zjištění country_id konkrétní krajiny použijte funkci [getCountries()](#12-getcountries).
+
 ###30. stockItems
 Vrátí seznam skladových položek
 #####Parametry:
