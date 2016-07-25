@@ -772,6 +772,7 @@ Seznam možných jazyků pro doklady:
 * 'rus' => ruština
 * 'ukr' => ukrajinština
 * 'hun' => maďarština
+* 'pol' => poľština
 
 ###25. sendInvoicePost
 Odešle fakturu poštou
