@@ -94,7 +94,8 @@ $json_response = $sf_api->save();
 * *stockItemEdit($item = array())* 
 * *stockItems($params = array(), $list_info = true)* 
 * *stockItem($id)* 
-* *addContactPerson($data)* 
+* *addContactPerson($data)*
+* *getExpenseCategories()*
 
 ### 1. __construct
 Konstruktor. Nastaví email a API token pro autorizaci.
@@ -680,6 +681,7 @@ Seznam možných vlastností nákladu
 * **variable** - variabilní symbol 
 * **taxable_supply** - Datum uplatnění DPH
 * **document_number** - Číslo dokladu. Například číslo došlé faktury, číslo pokladního bloku a podobně.
+* **expense_category_id** - ID příslušné kategorie. Seznam všech kategorií je možné získat pomocí funkce getExpenseCategories().
 
 ###23. setInvoice
 Nastaví hodnoty pro fakturu
