@@ -297,7 +297,8 @@ Array (
 	[mail] => Poštou 
 	[courier] => Kurýrem 
 	[personal] => Osobní odběr 
-	[haulage] => Nákladní doprava 
+	[haulage] => Nákladní doprava
+	[pickup_point]  => Odběrní místo
 )
 ```
 Způsob úhrady
