@@ -738,7 +738,8 @@ Seznam možných vlastností faktury
 * **type** - typ faktury. Možnosti: regular - běžná faktura, proforma - zálohová faktura, cancel - dobropis, estimate - cenová nabídka, order - přijatá objednávka 
 * **variable** - variabilní symbol (v případě nevyplnění variabilního symbolu se automaticky doplní číslo faktury)
 * **bank_accounts** - (pole) seznam bankovních účtů (viz příklad výše)
-* * **order_no** - číslo objednávky
+* **order_no** - číslo objednávky
+* **logo_id** - ID loga
 
 ###24. sendInvoiceEmail
 Odešle fakturu emailem
