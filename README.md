@@ -731,7 +731,8 @@ Seznam možných vlastností faktury
 * **issued_by_email** - fakturu vystavil e-mail 
 * **name** - název faktury 
 * **payment_type** - Způsob úhrady, číselník hodnot 
-* **proforma_id** - ID proforma faktury, na základě ktoré se vystavuje ostrá faktura. Ostrá faktura tak přebere údaje o uhrazené záloze 
+* **proforma_id** - ID proforma faktury, na základě ktoré se vystavuje ostrá faktura. Ostrá faktura tak přebere údaje o uhrazené záloze
+* **parent_id** - ID faktury, ke které chcete vystavit dobropis (opravný daňový doklad)
 * **rounding** - Způsob zaokrouhlování DPH. 'document' => za celý dokument, 'item' => po položkách (předvolená hodnota) 
 * **specific** - specifický symbol 
 * **sequence_id** - ID číselníku, seznam číselníků je možné získat metodou getSequences 
