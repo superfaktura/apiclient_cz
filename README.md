@@ -729,7 +729,8 @@ Seznam možných vlastností faktury
 * **invoice_no_formatted** - číslo faktury 
 * **issued_by** - fakturu vystavil jméno 
 * **issued_by_phone** - fakturu vystavil telefon 
-* **issued_by_email** - fakturu vystavil e-mail 
+* **issued_by_email** - fakturu vystavil e-mail
+* **issued_by_web** - webová stránka zobrazená na faktuře 
 * **name** - název faktury 
 * **payment_type** - Způsob úhrady, číselník hodnot 
 * **proforma_id** - ID proforma faktury, na základě ktoré se vystavuje ostrá faktura. Ostrá faktura tak přebere údaje o uhrazené záloze
