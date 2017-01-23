@@ -14,7 +14,7 @@ if(!class_exists('Requests')){
 
 class SFAPIclient{
 
-	private
+	protected
 		$email,
 		$apikey,
 		$company_id,
@@ -73,7 +73,7 @@ class SFAPIclient{
 		return $request_params;
 	}
 
-	private function exceptionHandling($e){
+	protected function exceptionHandling($e){
 		$response_data = new stdClass();
 		$response_data->error = 99;
 		$response_data->error_message = $e->getMessage();
@@ -190,7 +190,7 @@ class SFAPIclient{
 		}
 	}
 
-	private function getConstant($const){
+	protected function getConstant($const){
 		return constant(get_class($this)."::".$const);
 	}
 
@@ -455,8 +455,6 @@ class SFAPIclient{
 				'amount' => $amount,
 				'currency' => $currency,
 				'created' => date('Y-m-d', strtotime($date)),
-				// 'import_type' => 'prestashop',
-				// 'import_id' => 1
 			);
 
 			$response = Requests::post($this->getConstant('SFAPI_URL').'/invoice_payments/add/ajax:1/api:1', $this->headers, array('data' => json_encode($request_data)), array('timeout' => $this->timeout));
@@ -629,7 +627,7 @@ class SFAPIclient{
 class SFAPIclientCZ extends SFAPIclient{
 	const
 		SFAPI_URL = 'https://moje.superfaktura.cz';
-		
+}
 
 class SFAPIclientAT extends SFAPIclient {
 	const
