@@ -960,6 +960,18 @@ vytvoří uživatelský přístup
 * **$email** *string*, povinné.
 * **$send_email** *boolean*, nepovinné. Rozhoduje o tom, zda se odešle email o úspěšné registraci.
  
+## 36. setInvoiceSettings($settings)
+nastaví vlastnosti  pri zobrazovaní faktúry
+##### Parametre 
+* **$settings** *array*, povinné.
+Zoznam možných vlastností faktúry:
+* **language** *string*, nastaví jazyk faktúry.
+* **signature** *boolean*, zobrazovať podpis.
+* **payment_info** *boolean*, zobrazovať informáciu o úhrade.
+* **online_payment** *boolean*, zobrazovať online platby.
+* **bysquare** *boolean*, zobrazovať pay by square    
+* **paypal** *boolean*, zobrazovať PayPal
+
 ###Autorizace
 Pro přihlášení se do API je potřebný e-mail, na který je účet zaregistrovaný a API Token, který je možné nalézt v Nástroje > API.
 Samotná autorizace se vykonáva pomocí hlavičky "Authorization", která má nasledující tvar:
