@@ -354,7 +354,7 @@ Dodatečně přidá úhradu k faktuře.
 * **$currency** *string* nepovinné. Měna úhrady, předvolená CZK. 
 * **$date** *string* nepovinné. Datum úhrady, předvolený aktuální datum. 
 * **$payment_type** *string* nepovinné. Způsob úhrady, předvolený typ transfer. Možné hodnoty {transfer, cash, paypal, credit, debit, cod, accreditation, inkaso, gopay}
-* **$cash_register_id** int nepovinné. ID pokladne
+* **$cash_register_id** int nepovinné. ID pokladny
 
 #####Návratová hodnota: objekt
 
@@ -714,7 +714,7 @@ $api->setInvoice(array(
 
 Seznam možných vlastností faktury
 * **already_paid** - byla už faktura uhrazená? true/false
-* **cash_register_id** - int nepovinné. ID pokladny
+* **cash_register_id** - int nepovinné. ID pokladny do které bude evidovaná platba (v případě EET pokladny bude tato úhrada zaevidována do EET)
 * **created** - datum vystavení 
 * **comment** - komentář 
 * **constant** - konstantný symbol 
