@@ -3,7 +3,7 @@
  * @category   SuperFaktura API
  * @author     SuperFaktura.sk s.r.o. <info@superfaktura.sk>
  * @version    1.6
- * @lastUpdate 17.02.2017
+ * @lastUpdate 13.07.2017
  *
  */
 
@@ -622,6 +622,17 @@ class SFAPIclient{
 		try{
 			if (is_array($settings)){
 				$this->data['InvoiceSetting']['settings'] = json_encode($settings);
+			}
+		}
+		catch (Exception $e) {
+			return $this->exceptionHandling($e); 
+		}
+	}
+	
+	public function setInvoiceExtras($extras){
+		try{
+			if (is_array($extras)){
+				$this->data['InvoiceExtra'] = $extras;
 			}
 		}
 		catch (Exception $e) {
