@@ -97,6 +97,8 @@ $json_response = $sf_api->save();
 * *addContactPerson($data)*
 * *getExpenseCategories()*
 * *register($email, $send_email= true)*
+* *setInvoiceSettings($settings)*
+* *setInvoiceExtras($extras)*
 
 ### 1. __construct
 Konstruktor. Nastaví email a API token pro autorizaci.
@@ -972,6 +974,13 @@ Zoznam možných vlastností faktúry:
 * **online_payment** *boolean*, zobrazovať online platby.
 * **bysquare** *boolean*, zobrazovať pay by square    
 * **paypal** *boolean*, zobrazovať PayPal
+
+## 36. setInvoiceExtras($extras)
+rozžírené parametry faktury
+##### Parametre 
+* **$extras** *array*, povinné.
+Zoznam možných parametrov:
+* **pickup_point_id** *int* ID odběrného místa pro Zásilkovňu
 
 ###Autorizace
 Pro přihlášení se do API je potřebný e-mail, na který je účet zaregistrovaný a API Token, který je možné nalézt v Nástroje > API.
