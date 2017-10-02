@@ -2,8 +2,8 @@
 /**
  * @category   SuperFaktura API
  * @author     SuperFaktura.sk s.r.o. <info@superfaktura.sk>
- * @version    1.6
- * @lastUpdate 13.07.2017
+ * @version    1.7
+ * @lastUpdate 02.10.2017
  *
  */
 
@@ -634,6 +634,35 @@ class SFAPIclient{
 			if (is_array($extras)){
 				$this->data['InvoiceExtra'] = $extras;
 			}
+		}
+		catch (Exception $e) {
+			return $this->exceptionHandling($e); 
+		}
+	}
+	public function deleteInvoicePayment($payment_id){
+		if(!class_exists('Requests')){
+			trigger_error("Unable to load Requests class", E_USER_WARNING);
+			return false;
+		}
+		try{
+			$response = Requests::get($this->getConstant('SFAPI_URL').'/invoice_payments/delete/'.$payment_id, $this->headers, array('timeout' => $this->timeout));
+			$response_data = json_decode($response->body);
+			return $response_data;
+		}
+		catch (Exception $e) {
+			return $this->exceptionHandling($e); 
+		}
+	}
+
+	public function deleteExpensePayment($payment_id){
+		if(!class_exists('Requests')){
+			trigger_error("Unable to load Requests class", E_USER_WARNING);
+			return false;
+		}
+		try{
+			$response = Requests::get($this->getConstant('SFAPI_URL').'/expense_payments/delete/'.$payment_id, $this->headers, array('timeout' => $this->timeout));
+			$response_data = json_decode($response->body);
+			return $response_data;
 		}
 		catch (Exception $e) {
 			return $this->exceptionHandling($e); 
