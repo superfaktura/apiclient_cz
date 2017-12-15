@@ -100,6 +100,7 @@ $json_response = $sf_api->save();
 * *setInvoiceSettings($settings)*
 * *setInvoiceExtras($extras)*
 * *cashRegister($cash_register_id)*
+* *sendSMS($data)*
 
 ### 1. __construct
 Konstruktor. Nastaví email a API token pro autorizaci.
@@ -987,6 +988,17 @@ Zoznam možných parametrov:
 Vrátí detail pokladny včetne pohybů
 ##### Parametre 
 * **cash_register_id** *int* ID pokladny
+
+## 37. sendSMS($data)
+Odešle SMS.
+##### Parametre 
+* **$data** *array*, povinné.
+
+Zoznam možných parametrov:
+* **$invoice_id** *int*, povinné. ID faktury
+* **$text** *string*, povinné  Text SMS.
+* **$phone** *string*, pokud není zadané tel. číslo použije se tel. číslo klienta z faktury
+
 
 ###Autorizace
 Pro přihlášení se do API je potřebný e-mail, na který je účet zaregistrovaný a API Token, který je možné nalézt v Nástroje > API.
