@@ -127,7 +127,8 @@ array(
 	'tax' => 20, //sazba DPH, pokud nejste plátcem DPH, zadajte 0 
 	'stock_item_id' => 123, //id skladové položky 
 	'sku' => 'SKU123', //skladové označení 
-	'discount' => 50, //Sleva na položku v % 
+	'discount' => 50, //Sleva na položku v %
+	'discount_description' => 'Popis slevy',
 	'load_data_from_stock' => true //Načíst nevyplněné údaje položky ze skladu 
 )
 ```
@@ -725,7 +726,8 @@ Seznam možných vlastností faktury
 * **delivery** - Zdanitelné plnění
 * **delivery_type** - spůsob dodání, číselník hodnot 
 * **deposit** - uhrazená záloha 
-* **discount** - sleva v % 
+* **discount** - sleva v %
+* **discount_total** - nominální sleva, použije se pouze pokud není nastavena vlastnost discount
 * **due** - datum splatnosti 
 * **estimate_id** - ID cenové nabídky, na základě které je faktura vystavená 
 * **header_comment** - Text nad položkami faktury 
