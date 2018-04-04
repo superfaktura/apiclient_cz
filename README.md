@@ -953,7 +953,7 @@ Vrátí detail skladové položky
 ##### Parametry:
 * **$stock_item_id** int povinné. Získané z StockItem->id. 
 
-###32. addContactPerson($data)
+### 32. addContactPerson($data)
 Přidá novou kontaktní osobu ke stávajícímu klientovi. Návratová hodnota je objekt (JSON). Pokud operace proběhla bez problémů je nastaven atribut status na hodnotu (string) 'SUCCESS'.
 ```php
 $result = $api->addContactPerson(array(
