@@ -96,7 +96,6 @@ $json_response = $sf_api->save();
 * *stockItem($id)* 
 * *addContactPerson($data)*
 * *getExpenseCategories()*
-* *register($email, $send_email= true)*
 * *setInvoiceSettings($settings)*
 * *setInvoiceExtras($extras)*
 * *cashRegister($cash_register_id)*
@@ -969,14 +968,8 @@ if ($result->status === 'SUCCESS')
  
 ### 34. getExpenseCategories()
 Vrátí seznam všech kategorií nákladů. Návratová hodnota je objekt (JSON).
-
-### 35. register($email, $send_email= true)
-vytvoří uživatelský přístup
-##### Parametre 
-* **$email** *string*, povinné.
-* **$send_email** *boolean*, nepovinné. Rozhoduje o tom, zda se odešle email o úspěšné registraci.
  
-## 36. setInvoiceSettings($settings)
+## 35. setInvoiceSettings($settings)
 nastaví vlastnosti  pri zobrazovaní faktúry
 ##### Parametre 
 * **$settings** *array*, povinné.
@@ -1000,7 +993,7 @@ Vrátí detail pokladny včetne pohybů
 ##### Parametre 
 * **cash_register_id** *int* ID pokladny
 
-## 37. sendSMS($data)
+## 38. sendSMS($data)
 Odešle SMS.
 ##### Parametre 
 * **$data** *array*, povinné.
