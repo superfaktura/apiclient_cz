@@ -144,7 +144,7 @@ array(
 ### 3. addTags
 Přidá faktuře tagy podle číselníku
 #### Parametry:
-* **$tags_ids** *pole* povinné, pole ID požadovaných tagů 
+* **$tags_ids** *pole* povinné, pole ID požadovaných tagů. Pro vytvoření nového tagu, vložte jeho název. Tag se vytvoří a jeho ID se automaticky přiřadí k dokladu.
 
 ### 4. clients
 Vrátí seznam klientů
