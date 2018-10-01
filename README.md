@@ -100,6 +100,7 @@ $json_response = $sf_api->save();
 * *setInvoiceExtras($extras)*
 * *cashRegister($cash_register_id)*
 * *sendSMS($data)*
+* *setMyData($key, $value = '')*
 
 ### 1. __construct
 Konstruktor. Nastaví email a API token pro autorizaci.
@@ -1004,6 +1005,34 @@ Zoznam možných parametrov:
 * **$text** *string*, povinné  Text SMS.
 * **$phone** *string*, pokud není zadané tel. číslo použije se tel. číslo klienta z faktury
 
+## 39. setMyData
+Nastaví hodnoty pro údaje dodavatele na faktuře
+##### Parametre
+* **$key** mixed povinné. Může být string nebo pole. Pokud je string, nastaví se konkrétní hodnota v $data['MyData'][$key]. Pokud je pole, nastaví se více hodnot najednou. 
+* **$value** mixed nepovinné. Pokud je $key string, hodnota $value se nastaví v $data['MyData'][$key]. Pokud je $key pole, $value se ignoruje.
+
+Příklad použití:
+```php 
+$api->setMyData('ic_dph', 'SK1234567890');
+```
+```php
+$api->setMyData(array(
+	'company_name' => 'Testovacia firma',
+	'ic_dph' => 'SK1234567890',
+	'country_id' => '57'
+));
+  ``` 
+
+Seznam možných úprav v údajích dodavatele:
+* **country_id** - ID země, číselník zemí je možné získat metodou getCountries
+* **company_name** - Název společnosti
+* **dic** - DIČ
+* **ic_dph** - IČ DPH
+* **business_register** - Zápis v obchodním rejstříku
+* **address** - Adresa společnosti - ulice a číslo
+* **city** - Adresa společnosti - město
+* **zip** - Adresa společnosti - PSČ
+* **update_profile** - Boolean hodnota. Pokud se pošle s hodnotou true, aktualizují se i údaje v profilu. Pokud se pošle s hodnotou false nebo nepošle vůbec, údaje se změní jen na faktuře, ale profilové údaje zůstanou nezměněny.
 
 ### Autorizace
 Pro přihlášení se do API je potřebný e-mail, na který je účet zaregistrovaný a API Token, který je možné nalézt v Nástroje > API.
