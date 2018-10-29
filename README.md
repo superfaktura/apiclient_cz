@@ -101,6 +101,7 @@ $json_response = $sf_api->save();
 * *cashRegister($cash_register_id)*
 * *sendSMS($data)*
 * *setMyData($key, $value = '')*
+* *getInvoiceDetails($ids = '')*
 
 ### 1. __construct
 Konstruktor. Nastaví email a API token pro autorizaci.
@@ -1033,6 +1034,17 @@ Seznam možných úprav v údajích dodavatele:
 * **city** - Adresa společnosti - město
 * **zip** - Adresa společnosti - PSČ
 * **update_profile** - Boolean hodnota. Pokud se pošle s hodnotou true, aktualizují se i údaje v profilu. Pokud se pošle s hodnotou false nebo nepošle vůbec, údaje se změní jen na faktuře, ale profilové údaje zůstanou nezměněny.
+
+### 40. getInvoiceDetails($ids)
+vrátí detaily faktur
+##### Parametre 
+* **$ids** *array*, limit 100
+
+Příklad použití:
+```php
+$api->getInvoiceDetails(array(1, 2, 3, 4, 5, 6, 7, 8));
+  ```
+
 
 ### Autorizace
 Pro přihlášení se do API je potřebný e-mail, na který je účet zaregistrovaný a API Token, který je možné nalézt v Nástroje > API.
