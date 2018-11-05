@@ -2,8 +2,8 @@
 /**
  * @category   SuperFaktura API
  * @author     SuperFaktura.sk s.r.o. <info@superfaktura.sk>
- * @version    1.15
- * @lastUpdate 29.10.2018
+ * @version    1.16
+ * @lastUpdate 05.11.2018
  *
  */
 
@@ -630,6 +630,16 @@ class SFAPIclient {
 		}
 		catch (Exception $e) {
 			return $this->exceptionHandling($e); 
+		}
+	}
+
+	public function getUserCompaniesData($getAllCompanies = false) {
+		try {
+		    $response = Requests::get($this->getConstant('SFAPI_URL').'/users/getUserCompaniesData/'.$getAllCompanies, $this->headers, array('timeout' => $this->timeout));
+		    $response_data = json_decode($response->body);
+		    return $response_data;
+		} catch (Exception $e) {
+		    return $this->exceptionHandling($e);
 		}
 	}
 }
