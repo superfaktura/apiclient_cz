@@ -102,6 +102,7 @@ $json_response = $sf_api->save();
 * *sendSMS($data)*
 * *setMyData($key, $value = '')*
 * *getInvoiceDetails($ids = '')*
+* *getUserCompaniesData($getAllCompanies = false)*
 
 ### 1. __construct
 Konstruktor. Nastaví email a API token pro autorizaci.
@@ -1045,6 +1046,17 @@ Příklad použití:
 $api->getInvoiceDetails(array(1, 2, 3, 4, 5, 6, 7, 8));
   ```
 
+### 41. getUserCompaniesData($getAllCompanies)
+Vrátí údaje o firmě, do které jste momentálně přihlášen, případně o všech firmách, ke kterým má účet přístup.
+
+##### Parametre 
+* **$getAllCompanies** bool nepovinné. Pokud je parametr true, vrací údaje o všech firmách, ke kterým má účet přístup. Default je false - vrátí údaje pouze o firmě, ve které je účet momentálně přihlášen.
+
+Příklad použití:
+```php
+$api->getUserCompaniesData();
+$api->getUserCompaniesData(true);
+  ```
 
 ### Autorizace
 Pro přihlášení se do API je potřebný e-mail, na který je účet zaregistrovaný a API Token, který je možné nalézt v Nástroje > API.
