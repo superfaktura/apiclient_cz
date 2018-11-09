@@ -1,7 +1,7 @@
 <?php
 require_once('SFAPIclient/SFAPIclient.php');  // inc. SuperFaktúra PHP-API
-$login_email = 'chriastel.lubomir@gmail.com';  // moja.superfaktura.sk login email
-$api_token = '702b3498dcfeb7773ed54d31e90adaa2';  // token from my account
+$login_email = '';  // moja.superfaktura.sk login email
+$api_token = '';  // token from my account
 $sf_api = new SFAPIclient($login_email, $api_token);  // create SF PHP-API object
 
 // set client for new invoice
