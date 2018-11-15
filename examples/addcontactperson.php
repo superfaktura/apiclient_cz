@@ -3,7 +3,7 @@
 	require_once('../SFAPIclient/SFAPIclient.php');
 	$email = 'example@example.com';
 	$token = 'apitoken';
-	$api = new SFAPIclient($email, $token);
+	$api = new SFAPIclientCZ($email, $token);
 	$data = array(
 		'client_id' => 503084,
 		'name' => 'Jaroslav',
