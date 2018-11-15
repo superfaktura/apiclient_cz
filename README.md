@@ -33,7 +33,7 @@ Na to, abyste mohli začít API na plno využívat, je třeba:
 require_once('SFAPIclient/SFAPIclient.php');  // inc. SuperFaktúra PHP-API
 $login_email = 'login@example.com';  // moja.superfaktura.sk login email
 $api_token = 'abcd1234';  // token from my account
-$sf_api = new SFAPIclient($login_email, $api_token);  // create SF PHP-API object
+$sf_api = new SFAPIclientCZ($login_email, $api_token);  // create SF PHP-API object
 ```
 ### 3. Používání PHP-API volání
 Níže je uveden seznam všech možných volání, které obsahuje nejnovější verze našeho API. *Všechny PHP funkce našeho API jsou veřejné členské funkce třídy SFAPIclient*. 
