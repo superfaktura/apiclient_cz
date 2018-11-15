@@ -17,7 +17,7 @@
 	require_once('../SFAPIclient/SFAPIclient.php');
 
 	// Create and init SFAPIclient
-	$api = new SFAPIclient(SFAPI_EMAIL, SFAPI_KEY, SFAPI_APPTITLE, SFAPI_MODULE);
+	$api = new SFAPIclientCZ(SFAPI_EMAIL, SFAPI_KEY, SFAPI_APPTITLE, SFAPI_MODULE);
 
 	/***********************************************
 	 * Example; create new invoice
