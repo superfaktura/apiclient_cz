@@ -4,7 +4,7 @@
 
 	require_once('../SFAPIclient/SFAPIclient.php');
 
-	$api = new SFAPIclient(SFAPI_EMAIL, SFAPI_KEY);
+	$api = new SFAPIclientCZ(SFAPI_EMAIL, SFAPI_KEY);
 
 	//setup client data
 	$api->setClient(array(
