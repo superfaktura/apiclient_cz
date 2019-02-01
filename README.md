@@ -103,6 +103,7 @@ $json_response = $sf_api->save();
 * *setMyData($key, $value = '')*
 * *getInvoiceDetails($ids = '')*
 * *getUserCompaniesData($getAllCompanies = false)*
+* *createRegularFromProforma($proforma_id)*
 
 ### 1. __construct
 Konstruktor. Nastaví email a API token pro autorizaci.
@@ -753,7 +754,7 @@ Seznam možných vlastností faktury
 * **payment_type** - Způsob úhrady, číselník hodnot 
 * **proforma_id** - ID proforma faktury, na základě ktoré se vystavuje ostrá faktura. Ostrá faktura tak přebere údaje o uhrazené záloze
 * **parent_id** - ID faktury, ke které chcete vystavit dobropis (opravný daňový doklad)
-* **rounding** - Způsob zaokrouhlování DPH. 'document' => za celý dokument, 'item' => po položkách (předvolená hodnota) 
+* **rounding** - Způsob zaokrouhlování DPH. 'document' => za celý dokument, 'item' => po položkách (předvolená hodnota), 'item_ext' => maloobchod (doporučený typ pro eshopy) 
 * **specific** - specifický symbol 
 * **sequence_id** - ID číselníku, seznam číselníků je možné získat metodou getSequences 
 * **type** - typ faktury. Možnosti: regular - běžná faktura, proforma - zálohová faktura, cancel - dobropis, estimate - cenová nabídka, order - přijatá objednávka 
@@ -1059,7 +1060,17 @@ Příklad použití:
 $api->getUserCompaniesData();
 $api->getUserCompaniesData(true);
   ```
+### 42. createRegularFromProforma($proforma_id)
+vystaví ostrou fakturu ze zálohové faktury
 
+##### Parametre 
+* **$proforma_id** *int* povinné. Id zálohové faktury
+
+Příklad použití:
+```php
+$api->createRegularFromProforma(123);
+  ```
+  
 ### Autorizace
 Pro přihlášení se do API je potřebný e-mail, na který je účet zaregistrovaný a API Token, který je možné nalézt v Nástroje > API.
 Samotná autorizace se vykonáva pomocí hlavičky "Authorization", která má nasledující tvar:
