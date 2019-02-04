@@ -104,6 +104,7 @@ $json_response = $sf_api->save();
 * *getInvoiceDetails($ids = '')*
 * *getUserCompaniesData($getAllCompanies = false)*
 * *createRegularFromProforma($proforma_id)*
+* *setEstimateStatus($estimate_id, $status)*
 
 ### 1. __construct
 Konstruktor. Nastaví email a API token pro autorizaci.
@@ -1070,6 +1071,19 @@ Příklad použití:
 ```php
 $api->createRegularFromProforma(123);
   ```
+  
+### 43. setEstimateStatus($estimate_id, $status)
+změní stav cenové nabídky
+
+##### Parametre 
+* **$estimate_id** *int* povinné. Id enové nabídky
+* **$status** *int* povinné. Id stavu nabídky
+
+Seznam možných stavů cenové nabídky:
+*  1 => neschválena
+*  2 => schválena
+*  3 => zamítnuta
+
   
 ### Autorizace
 Pro přihlášení se do API je potřebný e-mail, na který je účet zaregistrovaný a API Token, který je možné nalézt v Nástroje > API.
