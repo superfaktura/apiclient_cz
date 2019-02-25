@@ -105,6 +105,13 @@ $json_response = $sf_api->save();
 * *getUserCompaniesData($getAllCompanies = false)*
 * *createRegularFromProforma($proforma_id)*
 * *setEstimateStatus($estimate_id, $status)*
+* *getBankAccounts()*
+* *addBankAccount(array $data)*
+* *updateBankAccount(int $id, array $data)*
+* *deleteBankAccount(int $id)*
+* *addTag(array $data)*
+* *updateTag(int $id, array $data)*
+* *deleteTag(int $id)*
 
 ### 1. __construct
 Konstruktor. Nastaví email a API token pro autorizaci.
@@ -1083,6 +1090,129 @@ Seznam možných stavů cenové nabídky:
 *  1 => neschválena
 *  2 => schválena
 *  3 => zamítnuta
+
+
+
+
+### 44. getBankAccounts()
+
+Vrátí seznam bankovních účtů.
+
+```php
+$api->getBankAccounts();
+```
+
+### 45. addBankAccount(array $data)
+
+Přidá bankovní účet.
+
+##### Parametry
+
+* **$data** *array* povinné. Údaje o bankovním účtu
+
+Seznam možných vlastností bankovního účtu:
+* **bank_account** - číslo účtu
+* **bank_code** - čislo banky
+* **bank_name** - název banky
+* **default** - je účet přednastavený?
+* **iban** - IBAN
+* **show** - zobrazuj účet na dokumentech
+* **swift** - SWIFT
+
+```php
+$api->addBankAccount([
+    'iban' => 'CZ0000000123',
+    'swift' => 'ABCDE12',
+    'bank_name' => 'AbcBanka',
+    'default' => 1,
+]);
+```
+
+### 46. updateBankAccount(int $id, array $data)
+
+Uprav bankovní účet.
+
+
+##### Parametry
+
+* **$id** *int* povinné. ID bankovního účtu
+* **$data** *array* povinné. Údaje o bankovním účtu
+
+Seznam možných vlastností bankovního účtu:
+* **bank_account** - číslo účtu
+* **bank_code** - čislo banky
+* **bank_name** - název banky
+* **default** - je účet přednastavený?
+* **iban** - IBAN
+* **show** - zobrazuj účet na dokumentech
+* **swift** - SWIFT
+
+```php
+$api->updateBankAccount(123, [
+    'bank_name' => 'Originálna Fiktívna Banka',
+    'default' => 0,
+]);
+```
+
+
+### 47. deleteBankAccount(int $id)
+
+Smaže bankovní účet.
+
+##### Parametry
+
+* **$id** *int* povinné. ID bankovního účtu
+
+```php
+$api->deleteBankAccount(123);
+```
+
+
+
+### 48. addTag(array $data)
+
+Přidá nový tag.
+
+##### Parametry
+
+* **$data** *array* povinné. Údaje o tagu
+
+Seznam možných vlastností tagu:
+* **name** - název tagu
+
+```php
+$api->addTag(['name' => 'nový tag',]);
+```
+
+
+### 49. updateTag(int $id, array $data)
+
+Upraví existující tag.
+
+##### Parametry
+
+* **$id** *int* povinné. ID tagu
+* **$data** *array* povinné. Údaje o tagu
+
+Seznam možných vlastností tagu:
+* **name** - název tagu
+
+```php
+$api->editTag(123, ['name' => 'starý tag',]);
+```
+
+### 50. deleteTag(int $id)
+
+Smaže tag.
+
+##### Parametry
+
+* **$id** *int* povinné. ID tagu
+
+```php
+$api->deleteTag(123);
+```
+
 
   
 ### Autorizace
