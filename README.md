@@ -818,7 +818,8 @@ Seznam možných vlastností faktury
 * **issued_by_phone** - fakturu vystavil telefon 
 * **issued_by_email** - fakturu vystavil e-mail
 * **issued_by_web** - webová stránka zobrazená na faktuře 
-* **name** - název faktury 
+* **name** - název faktury
+* **paydate** - datum úhrady 
 * **payment_type** - Způsob úhrady, číselník hodnot 
 * **proforma_id** - ID proforma faktury, na základě ktoré se vystavuje ostrá faktura. Ostrá faktura tak přebere údaje o uhrazené záloze
 * **parent_id** - ID faktury, ke které chcete vystavit dobropis (opravný daňový doklad)
