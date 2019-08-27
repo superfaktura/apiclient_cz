@@ -1092,6 +1092,11 @@ rozžírené parametry faktury
 * **$extras** *array*, povinné.
 Zoznam možných parametrov:
 * **pickup_point_id** *int* ID odběrného místa pro Zásilkovňu
+* **weight** *float*, váha balíku,
+* **parcel_count** *int*, počet balíků,
+* **insurance**, *float*, hodnota pojištění,
+* **dimension**, *string*, rozměr balíku v cm (d x š x v)
+* **tracking_number** *string*, podací číslo
 
 ## 37. cashRegister($cash_register_id)
 Vrátí detail pokladny včetne pohybů
