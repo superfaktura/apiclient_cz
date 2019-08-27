@@ -1087,11 +1087,12 @@ Zoznam možných vlastností faktúry:
 * **paypal** *boolean*, zobrazovať PayPal
 
 ## 36. setInvoiceExtras($extras)
-rozžírené parametry faktury
+rozšířené parametry faktury
 ##### Parametre 
 * **$extras** *array*, povinné.
+
 Zoznam možných parametrov:
-* **pickup_point_id** *int* ID odběrného místa pro Zásilkovňu
+* **pickup_point_id** *int* ID odběrného místa pro Zásilkovnu
 * **weight** *float*, váha balíku,
 * **parcel_count** *int*, počet balíků,
 * **insurance**, *float*, hodnota pojištění,
