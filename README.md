@@ -1080,11 +1080,12 @@ nastaví vlastnosti  pri zobrazovaní faktúry
 * **$settings** *array*, povinné.
 Zoznam možných vlastností faktúry:
 * **language** *string*, nastaví jazyk faktúry.
-* **signature** *boolean*, zobrazovať podpis.
+* **signature** *boolean*, zobrazovat podpis.
 * **payment_info** *boolean*, zobrazovať informáciu o úhrade.
-* **online_payment** *boolean*, zobrazovať online platby.
-* **bysquare** *boolean*, zobrazovať pay by square    
-* **paypal** *boolean*, zobrazovať PayPal
+* **online_payment** *boolean*, zobrazovat online platby.
+* **bysquare** *boolean*, zobrazovat pay by square    
+* **paypal** *boolean*, zobrazovat PayPal
+* **callback_payment** *string*, URL, která sa automaticky zavolá po přidání úhrady k faktuře
 
 ## 36. setInvoiceExtras($extras)
 rozšířené parametry faktury
