@@ -1434,3 +1434,21 @@ $api->setInvoice(array(
 ```php
 $api->payInvoice(1459738, null, 'CZK', null, 'transfer', 879);
 ```
+
+### Kvůli výpadku nepřišel response
+
+V případě, že volání vystavení faktury nevrátilo response - vypadl internet, nepřišla odpověď do timeoutu a pod. - je možné dodatečně zjistit response pro toto volání a zamezit tak např. duplicitnímu vystavení faktury.
+
+K faktuře je možné získat unikátní identifikátor (ne `invoice id`).
+Vzhledem k tomu, že jde o checksum, doporučujeme v datech faktury uvádět jedinečný údaj ke každé objednávce (např. číslo objednávky).
+
+Postup:
+1. standardní vystavení faktury
+2. `$api->save()`
+3. `$checksum = $api->getChecksum()`
+4. vybuchly internety a nemáme odpověď do timeoutu
+5. `$response = $api->getResponseByChecksum($checksum)`
+
+`$response` obsahuje původní response faktury, který jste poprvé nedostali.
+Response je možné získat pro volání staré maximálně 3 měsíce.
+Samozřejmě volání `getResponseByChecksum` je nutné také zkontrolovat pro případnou chybovou odpověď.
