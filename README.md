@@ -889,6 +889,7 @@ $api->sendInvoicePost(array(
 	'invoice_id' => 123456, // povinné 
 	/** > POKUD NEJSOU NASTAVEÉ VYTÁHNOU SE Z FAKTURY < *
 	****************************************************** 
+	'delivery_name' => 'SuperFaktura', 
 	'delivery_address' => 'Adresa 123', 
 	'delivery_city' => 'Město',
 	'delivery_zip' => '12345', 	
