@@ -886,13 +886,14 @@ Odešle fakturu poštou
 Příklad použití:
 ```php
 $api->sendInvoicePost(array( 
-			'invoice_id' => 123456, // povinné 
-			/** > POKUD NEJSOU NASTAVEÉ VYTÁHNOU SE Z FAKTURY < *
-			****************************************************** 
-			'delivery_address' => 'Adresa 123', 
-			'delivery_city' => 'Město', 
-			'delivery_state' => 'Česká republika' 
-			******************************************************/ 
+	'invoice_id' => 123456, // povinné 
+	/** > POKUD NEJSOU NASTAVEÉ VYTÁHNOU SE Z FAKTURY < *
+	****************************************************** 
+	'delivery_address' => 'Adresa 123', 
+	'delivery_city' => 'Město',
+	'delivery_zip' => '12345', 	
+	'delivery_state' => 'Česká republika' 
+	******************************************************/ 
 ));
 ```
 Seznam možných nastavení
