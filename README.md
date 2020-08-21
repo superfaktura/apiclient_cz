@@ -128,6 +128,8 @@ Konstruktor. Nastaví email a API token pro autorizaci.
 Přidá položku na fakturu.
 #### Parametry:
 * **$item** *pole* povinné
+ * **$item_type** string typ položky. Možné hodnoty Invoice(default) a Expense
+
 
 ##### formát fakturované položky:
 ```php
