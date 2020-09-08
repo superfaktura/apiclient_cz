@@ -145,6 +145,7 @@ array(
 	'discount' => 50, //Sleva na položku v %
 	'discount_description' => 'Popis slevy',
 	'load_data_from_stock' => true //Načíst nevyplněné údaje položky ze skladu
+	'use_document_currency' => true //V případě, že je zadáno load_data_from_stock, tak přepočítá skladovou položku, do měny dokladu.
 	'AccountingDetail' => array( // účtovnícke detaily položky, 
    	'place' => 'Stredisko Bratislava', //nazov strediska
    	'order' => 'názov', //nazov zákazky 
