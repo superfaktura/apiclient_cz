@@ -33,7 +33,7 @@ Na to, abyste mohli začít API na plno využívat, je třeba:
 + **Token** - API token, který najdete v SuperFaktúre po přihlášení do svého účtu "*Nástroje> API přístup*"
 ```php
 require_once('SFAPIclient/SFAPIclient.php');  // inc. SuperFaktúra PHP-API
-$login_email = 'login@example.com';  // moja.superfaktura.sk login email
+$login_email = 'login@example.com';  // moje.superfaktura.cz login email
 $api_token = 'abcd1234';  // token from my account
 $sf_api = new SFAPIclientCZ($login_email, $api_token);  // create SF PHP-API object
 ```
@@ -403,7 +403,7 @@ Array (
 Příklad filtrování faktur pomocí ID číselníku
 ```php
 require_once('SFAPIclient/SFAPIclient.php');  // inc. SuperFaktúra PHP-API
-$login_email = 'login@example.com';  // moja.superfaktura.sk login email
+$login_email = 'login@example.com';  // moje.superfaktura.cz login email
 $api_token = 'abcd1234';  // token from my account
 $sf_api = new SFAPIclient($login_email, $api_token);  // create SF PHP-API object
 $json_response = $sf_api->invoices(array(
