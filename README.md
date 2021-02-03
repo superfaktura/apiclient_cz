@@ -1107,6 +1107,7 @@ Zoznam možných parametrov:
 * **insurance**, *float*, hodnota pojištění,
 * **dimension**, *string*, rozměr balíku v cm (d x š x v)
 * **tracking_number** *string*, podací číslo
+* **uuid** *string*, volitelný jednoznačný identifikátor faktury
 
 ## 37. cashRegister($cash_register_id)
 Vrátí detail pokladny včetne pohybů
