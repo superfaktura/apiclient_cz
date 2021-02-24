@@ -1343,7 +1343,7 @@ Smaže tag.
 $api->deleteTag(123);
 ```
 
-### 50. client(int $id)
+### 51. client(int $id)
 
 Vrátí detail klienta.
 
