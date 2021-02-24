@@ -114,6 +114,7 @@ $json_response = $sf_api->save();
 * *addTag(array $data)*
 * *updateTag(int $id, array $data)*
 * *deleteTag(int $id)*
+* *client(int $id)*
 
 ### 1. __construct
 Konstruktor. Nastaví email a API token pro autorizaci.
@@ -1340,6 +1341,20 @@ Smaže tag.
 
 ```php
 $api->deleteTag(123);
+```
+
+### 50. client(int $id)
+
+Vrátí detail klienta.
+
+([všeobecná REST API dokumentace](https://github.com/superfaktura/docs/blob/master/clients.md#view-client-detail))
+
+##### Parametry
+
+* **$id** *int* povinné. ID klienta
+
+```php
+$api->client(123);
 ```
 
 
