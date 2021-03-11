@@ -6,6 +6,8 @@ Abyste se nemuseli trápit s přímým voláním API funkcí a způsobem přenos
 
 Pokud si však chcete vytvořit vlastního API klienta, máme i [obecnou dokumentaci](https://github.com/superfaktura/docs). 
 
+Pokud chcete API integraci vyzkoušet, máme pro vás [testovací prostředí - sandbox](https://sandbox.superfaktura.cz).
+
 ## Postup jak získat PHP-API klienta
 
 ### 1. způsob (vyžaduje nainstalovaný systém Git)
