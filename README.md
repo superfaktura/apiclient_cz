@@ -28,6 +28,13 @@ Na to, abyste mohli začít API na plno využívat, je třeba:
 * Na stránce https://moje.superfaktura.cz/registracia proveďte registraci. Automaticky získáte 30 dní zdarma.
 * Po přihlášení vystavte zkušební fakturu přes GUI SuperFaktury
 
+Pokud chcete zkoušet API klienta na sandboxu, [zaregistrujte se na sandboxu](https://sandbox.superfaktura.cz) a v kódu stačí zavolat metodu `useSandbox`.
+```
+$api = new SFAPIclient(SFAPI_EMAIL, SFAPI_KEY);
+$api->useSandBox();
+```
+
+
 ### 2. Udělat základní nastavení v kódu
 * Vytvořit novou instance třídy *SFAPIclientCZ*
 * Poskytnout v konstruktoru přihlašovací údaje do API
