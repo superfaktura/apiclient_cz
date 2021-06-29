@@ -1118,6 +1118,7 @@ Zoznam možných parametrov:
 * **dimension**, *string*, rozměr balíku v cm (d x š x v)
 * **tracking_number** *string*, podací číslo
 * **uuid** *string*, volitelný jednoznačný identifikátor faktury
+* **oss** *boolean*, Zvláštní režim jednoho správního místa OSS
 
 ## 37. cashRegister($cash_register_id)
 Vrátí detail pokladny včetne pohybů
