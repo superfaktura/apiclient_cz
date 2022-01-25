@@ -1,18 +1,14 @@
 <?php
-/**
- * @category   SuperFaktura API
- * @author     SuperFaktura.sk s.r.o. <info@superfaktura.sk>
- * @version    1.25
- * @link https://github.com/superfaktura/docs
- * @lastUpdate 21.08.2020
- *
- */
-
 if (!class_exists('Requests')) {
     require_once('Requests.php');
 }
 
-
+/**
+ * @category   SuperFaktura API
+ * @author     SuperFaktura.sk s.r.o. <info@superfaktura.sk>
+ * @version    1.32
+ * @link https://github.com/superfaktura/docs
+ */
 class SFAPIclient {
 
     protected
@@ -55,7 +51,14 @@ class SFAPIclient {
         $this->apikey     = $apikey;
         $this->company_id = $company_id;
         $this->headers    = array(
-            'Authorization' => self::API_AUTH_KEYWORD." " . http_build_query(array('email' => $this->email, 'apikey' => $this->apikey, 'company_id' => $this->company_id, 'module' => $module))
+            'Authorization' => self::API_AUTH_KEYWORD
+                . ' '
+                . http_build_query(array(
+                    'email' => $this->email,
+                    'apikey' => $this->apikey,
+                    'company_id' => $this->company_id,
+                    'module' => $this->getModuleString($module)
+                ))
         );
         $this->data['apptitle'] = $apptitle;
     }
@@ -203,7 +206,7 @@ class SFAPIclient {
     {
         return $this->get('/clients/index.json' . $this->_getRequestParams($params, $list_info));
     }
-    
+
     /**
      * Get client detail
      *
@@ -656,7 +659,7 @@ class SFAPIclient {
     /**
      * Set client data
      *
-     * @param string $key
+     * @param string|array $key
      * @param mixed $value
      *  
      * @link https://github.com/superfaktura/docs/blob/master/clients.md#attributes
@@ -669,7 +672,7 @@ class SFAPIclient {
     /**
      * Set invoice data
      *
-     * @param string $key
+     * @param string|array $key
      * @param mixed $value
      *  
      * @link https://github.com/superfaktura/docs/blob/master/invoice.md#invoice-2
@@ -891,11 +894,11 @@ class SFAPIclient {
     }
 
     /**
-     * Create regular form proforma invoice
+     * Create regular from proforma invoice
      *
      * @param int $proforma_id
      *
-     * @return mixed|stdClass
+     * @return NULL|mixed|stdClass
      */
     public function createRegularFromProforma($proforma_id)
     {
@@ -1171,8 +1174,44 @@ class SFAPIclient {
     {
         return !empty($this->last_error) ? $this->last_error : array();
     }
+
+    /**
+     * @return string
+     */
+    private function getVersion()
+    {
+        try {
+            $r = new ReflectionClass($this);
+            $doc = $r->getDocComment();
+            preg_match('#@version (?<version>.*?)\n#s', $doc, $annotations);
+
+            return isset($annotations['version']) ? trim($annotations['version']) : 'unknown';
+        } catch (ReflectionException $e) {
+            // fail silently
+            return 'unknown';
+        }
+    }
+
+    /**
+     * @param string $module
+     *
+     * @return string
+     */
+    private function getModuleString($module)
+    {
+        $version = $this->getVersion();
+
+        if ($module !== 'API') {
+            $version = sprintf('(w/ SFAPI %s)', $this->getVersion());
+        }
+
+        return sprintf('%s %s [%s]', $module, $version, PHP_VERSION_ID);
+    }
 }
 
+/**
+ * @version    1.32
+ */
 class SFAPIclientCZ extends SFAPIclient
 {
     const SFAPI_URL = 'https://moje.superfaktura.cz';
