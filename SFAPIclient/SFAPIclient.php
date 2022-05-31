@@ -1,4 +1,5 @@
 <?php
+
 if (!class_exists('Requests')) {
     require_once('Requests.php');
 }
@@ -6,7 +7,7 @@ if (!class_exists('Requests')) {
 /**
  * @category   SuperFaktura API
  * @author     SuperFaktura.sk s.r.o. <info@superfaktura.sk>
- * @version    1.32
+ * @version    1.33
  * @link https://github.com/superfaktura/docs
  */
 class SFAPIclient {
@@ -20,7 +21,8 @@ class SFAPIclient {
         $timeout = 30,
         $last_error = array(),
         $checksum = null,
-        $use_sandbox = false;
+        $use_sandbox = false,
+        $module;
 
     public
         $data = array(
@@ -34,8 +36,8 @@ class SFAPIclient {
 
     const
         API_AUTH_KEYWORD = 'SFAPI',
-        SFAPI_URL = 'https://moje.superfaktura.cz',
-        SANDBOX_URL = 'https://sandbox.superfaktura.cz';
+        SFAPI_URL = 'https://moja.superfaktura.sk',
+        SANDBOX_URL = 'https://sandbox.superfaktura.sk';
 
     public function useSandBox()
     {
@@ -49,7 +51,18 @@ class SFAPIclient {
         $this->className  = get_class($this);
         $this->email      = $email;
         $this->apikey     = $apikey;
-        $this->company_id = $company_id;
+        $this->data['apptitle'] = $apptitle;
+        $this->module = $module;
+        $this->setCompanyId($company_id);
+    }
+
+    /**
+     * Generates request headers
+     * 
+     * @return SFAPIclient
+     */
+    protected function generateHeaders(): SFAPIclient
+    {
         $this->headers    = array(
             'Authorization' => self::API_AUTH_KEYWORD
                 . ' '
@@ -57,10 +70,24 @@ class SFAPIclient {
                     'email' => $this->email,
                     'apikey' => $this->apikey,
                     'company_id' => $this->company_id,
-                    'module' => $this->getModuleString($module)
+                    'module' => $this->getModuleString()
                 ))
         );
-        $this->data['apptitle'] = $apptitle;
+
+        return $this;
+    }
+
+    /**
+     * Sets company ID and regenerates request headers
+     * 
+     * @param string|int $company_id
+     * 
+     * @return SFAPIclient
+     */
+    public function setCompanyId($company_id): SFAPIclient
+    {
+        $this->company_id = $company_id;
+        return $this->generateHeaders();
     }
 
     /**
@@ -924,6 +951,40 @@ class SFAPIclient {
     }
 
     /**
+     * Create proforma from order
+     *
+     * @param int $order_id
+     *
+     * @return NULL|mixed|stdClass
+     */
+    public function createProformaFromOrder($order_id)
+    {
+        if (empty($order_id)) {
+            $this->last_error = array(
+                'status' => 404,
+                'message' => 'Item not found',
+            );
+            return null;
+        }
+        
+        $order = $this->get('/invoices/order.json/' . $order_id);
+        
+        if (empty($order)) {
+            $this->last_error = array(
+                'status' => 404,
+                'message' => 'Item not found',
+            );
+            return null;
+        }
+        
+        $order->Invoice->type = 'proforma';
+        $order->Invoice->parent_id = $order_id;
+        
+        return $this->post('/invoices/create', (array)$order);
+    }
+    
+    
+    /**
      * Set estimate status
      *
      * @param int $estimate_id
@@ -1193,25 +1254,20 @@ class SFAPIclient {
     }
 
     /**
-     * @param string $module
-     *
      * @return string
      */
-    private function getModuleString($module)
+    private function getModuleString()
     {
         $version = $this->getVersion();
 
-        if ($module !== 'API') {
+        if ($this->module !== 'API') {
             $version = sprintf('(w/ SFAPI %s)', $this->getVersion());
         }
 
-        return sprintf('%s %s [%s]', $module, $version, PHP_VERSION_ID);
+        return sprintf('%s %s [%s]', $this->module, $version, PHP_VERSION_ID);
     }
 }
 
-/**
- * @version    1.32
- */
 class SFAPIclientCZ extends SFAPIclient
 {
     const SFAPI_URL = 'https://moje.superfaktura.cz';
