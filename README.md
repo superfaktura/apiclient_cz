@@ -844,6 +844,7 @@ Seznam možných vlastností faktury
 * **bank_accounts** - (pole) seznam bankovních účtů (viz příklad výše)
 * **order_no** - číslo objednávky
 * **logo_id** - ID loga
+* **add_rounding_item** - (boolean) přidá zaokrouhlení na doklad (při měně EUR zaokrouhluje na 5 centů a u CZK zaokrouhluje na celé číslo)
 
 ### 24. sendInvoiceEmail
 Odešle fakturu emailem
