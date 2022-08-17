@@ -124,6 +124,10 @@ $json_response = $sf_api->save();
 * *updateTag(int $id, array $data)*
 * *deleteTag(int $id)*
 * *client(int $id)*
+* *addRelatedItemToInvoice(int $item_id, int $related_item_id, string $related_item_type)*
+* *addRelatedItemToExpense(int $item_id, int $related_item_id, string $related_item_type)*
+* *deleteRelatedItemFromInvoice(int $connection_id)*
+* *deleteRelatedItemFromExpense(int $connection_id)*
 
 ### 1. __construct
 Konstruktor. Nastaví email a API token pro autorizaci.
@@ -1368,6 +1372,47 @@ Vrátí detail klienta.
 ```php
 $api->client(123);
 ```
+
+### 52. addRelatedItemToInvoice(int $item_id, int $related_item_id, string $related_item_type)
+Připojí související doklad k faktuře.
+##### Parametry
+* **$item_id** *int* povinné. ID faktury
+* **$related_item_id** *int* povinné. ID připojovaného dokumentu
+* **$related_item_type** *string* povinné. Typ připojovaného dokument (invoice|expense)
+
+```php
+$response = $api->addRelatedItemToInvoice(89, 76, 'invoice');
+```
+
+### 53. addRelatedItemToExpense(int $item_id, int $related_item_id, string $related_item_type)
+Připojí související doklad k nákladu.
+##### Parametry
+* **$item_id** *int* povinné. ID nákladu
+* **$related_item_id** *int* povinné. ID připojovaného dokumentu
+* **$related_item_type** *string* povinné. Typ připojovaného dokument (invoice|expense)
+
+```php
+$response = $api->addRelatedItemToExpense(32, 89, 'invoice');
+```
+
+### 54. deleteRelatedItemFromInvoice(int $connection_id)
+Odstraní související doklad z faktury.
+##### Parametry
+* **$connection_id** *int* povinné. ID faktury
+
+```php
+$response = $api->deleteRelatedItemFromInvoice(100);
+```
+
+### 55. deleteRelatedItemFromExpense(int $connection_id)
+Odstraní související doklad z nákladu.
+##### Parametry
+* **$connection_id** *int* povinné. ID nákladu
+
+```php
+$response = $api->deleteRelatedItemFromExpense(102);
+```
+
 
 
   
