@@ -1109,7 +1109,8 @@ Zoznam možných vlastností faktúry:
 * **bysquare** *boolean*, zobrazovat pay by square    
 * **paypal** *boolean*, zobrazovat PayPal
 * **callback_payment** *string*, URL, která sa automaticky zavolá po přidání úhrady k faktuře. GET parametr `invoice_id` bude přidán k URL. Pro odeslanou URL `https://example.com/callback/`, výsledná URL pro invoice_id 123 bude `https://example.com/callback/?invoice_id=123` nebo `https://example.com/callback/?invoice_id=123&secret_key={KEY}`.
-                                                                                                                                            Parametr `secret_key` může být součástí poslané URL (`https://example.com/callback/?secret_key=SECRET-KEY`) nebo být nastaven v profilu.  
+                                                                                                                                            Parametr `secret_key` může být součástí poslané URL (`https://example.com/callback/?secret_key=SECRET-KEY`) nebo být nastaven v profilu.
+* **summary_bg_color** *string*, barva souhrnu dokumentu. Tvar `#rrggbb`, kde `rr`, `gg` a `bb` jsou hexadecimální hodnoty `00`-`FF`
 
 ## 36. setInvoiceExtras($extras)
 rozšířené parametry faktury
