@@ -1,6 +1,8 @@
 ## Přehled
 SF API umožňuje propojení externích aplikací se SuperFakturou a dovoluje tak vzdáleně vytvářet faktury a získavat údaje o nich. Umožňuje také posílat faktury emailem nebo poštou.
 
+:rotating_light: Upozornění: Tento repozitář už není aktivně spravovaný, jako alternativu doporučujeme: [superfaktura/apiclient](https://github.com/superfaktura/apiclient) :rotating_light:
+
 ## Quickstart
 Abyste se nemuseli trápit s přímým voláním API funkcí a způsobem přenosu dat, připravili jsme pro Vás jednoduchého API klienta, díky kterému můžete Vaše faktury vystavovat nadálku s minimálním úsilím.
 
